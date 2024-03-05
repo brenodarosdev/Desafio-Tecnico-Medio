@@ -13,5 +13,5 @@ public interface ClienteAPI {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Cria novo Cliente")
-    public ClienteCriadoResponse postCadastraNovoCliente(@RequestBody @Valid CienteNovoRequest clienteNovoRequest);
+    ClienteCriadoResponse postCadastraNovoCliente(@RequestBody @Valid CienteNovoRequest clienteNovoRequest);
 }
