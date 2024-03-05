@@ -1,9 +1,7 @@
 package com.restaurante.deliverysystem.cliente.domain;
 
 import com.restaurante.deliverysystem.cliente.application.api.CienteNovoRequest;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,13 +17,14 @@ import java.util.UUID;
 public class Cliente {
     @Id
     private UUID idCliente;
-    @Email
     @Indexed(unique = true)
+    @NotBlank
+    @Email
     private String email;
     @NotBlank
     private String nomeCompleto;
-    @NotBlank
-    @Size(min = 18)
+    @NotNull
+    @Min(18)
     private int idade;
 
     public Cliente(CienteNovoRequest clienteNovoRequest) {
