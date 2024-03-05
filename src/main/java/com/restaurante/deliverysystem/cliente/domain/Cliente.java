@@ -1,6 +1,7 @@
 package com.restaurante.deliverysystem.cliente.domain;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -20,10 +21,11 @@ public class Cliente {
     @Email
     @Indexed(unique = true)
     private String email;
+    @NotBlank
     private String nomeCompleto;
+    @NotBlank
     @Size(min = 18)
     private int idade;
-
 
     public Cliente(UUID idCliente, String email, String nomeCompleto, int idade) {
         this.idCliente = idCliente;
