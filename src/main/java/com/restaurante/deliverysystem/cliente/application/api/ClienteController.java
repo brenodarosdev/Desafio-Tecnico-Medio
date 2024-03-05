@@ -16,6 +16,6 @@ public class ClienteController implements ClienteAPI {
         log.info("[inicia] ClienteController - postCadastraNovoCliente");
         ClienteCriadoResponse clienteCriado = clienteService.cadastraNovoCliente(clienteNovoRequest);
         log.info("[finaliza] ClienteController - postCadastraNovoCliente");
-        return null;
+        return clienteCriado;
     }
 }

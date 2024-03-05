@@ -1,5 +1,6 @@
 package com.restaurante.deliverysystem.cliente.domain;
 
+import com.restaurante.deliverysystem.cliente.application.api.CienteNovoRequest;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -27,10 +28,10 @@ public class Cliente {
     @Size(min = 18)
     private int idade;
 
-    public Cliente(UUID idCliente, String email, String nomeCompleto, int idade) {
-        this.idCliente = idCliente;
-        this.email = email;
-        this.nomeCompleto = nomeCompleto;
-        this.idade = idade;
+    public Cliente(CienteNovoRequest clienteNovoRequest) {
+        this.idCliente = UUID.randomUUID();
+        this.email = clienteNovoRequest.getEmail();
+        this.nomeCompleto = clienteNovoRequest.getNomeCompleto();
+        this.idade = clienteNovoRequest.getIdade();
     }
 }
