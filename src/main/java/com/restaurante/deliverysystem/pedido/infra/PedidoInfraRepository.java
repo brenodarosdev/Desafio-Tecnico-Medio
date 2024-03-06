@@ -27,7 +27,10 @@ public class PedidoInfraRepository implements PedidoRepository {
     @Override
     public Pedido pedidoPorId(UUID idPedido) {
         log.info("[inicia] PedidoInfraRepository - pedidoPorId");
+        // TODO Implementar tratamento de exceções
+        Pedido pedido = pedidoSpringDataMongoDBRepository.findByIdPedido(idPedido)
+                .orElseThrow(() -> new RuntimeException("Pedido não encontrado!"));
         log.info("[finaliza] PedidoInfraRepository - pedidoPorId");
-        return null;
+        return pedido;
     }
 }

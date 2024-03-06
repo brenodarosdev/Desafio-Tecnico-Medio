@@ -27,7 +27,7 @@ public class ClienteInfraRepository implements ClienteRepository {
         log.info("[inicia] ClienteInfraRepository - clientePorId");
         // TODO Tratar exeption
         Cliente cliente = clienteSpringDataMongoDBRepository.findByIdCliente(idCliente)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado!"));
         log.info("[finaliza] ClienteInfraRepository - clientePorId");
         return cliente;
     }
