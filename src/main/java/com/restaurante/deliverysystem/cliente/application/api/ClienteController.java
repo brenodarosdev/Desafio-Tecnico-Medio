@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
+
 @RequiredArgsConstructor
 @RestController
 @Log4j2
@@ -34,5 +35,11 @@ public class ClienteController implements ClienteAPI {
         log.info("[inicia] ClienteController - patchAlteraCliente");
         clienteService.alteraCliente(alteraClienteRequest, idCliente);
         log.info("[finaliza] ClienteController - patchAlteraCliente");
+    }
+
+    @Override
+    public void deleteDeletaCliente(UUID idCliente) {
+        log.info("[inicia] ClienteController - deleteDeletaCliente");
+        log.info("[finaliza] ClienteController - deleteDeletaCliente");
     }
 }
