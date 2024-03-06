@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @RestController
 @Log4j2
@@ -13,10 +15,10 @@ public class PedidoController implements PedidoAPI {
     private final PedidoService pedidoService;
 
     @Override
-    public PedidoCriadoResponse postCriaNovoPedido(PedidoRequest pedidoRequest) {
+    public PedidoCriadoResponse postCriaNovoPedido(PedidoRequest pedidoRequest, UUID idCliente) {
         log.info("[inicia] PedidoController - postCriaNovoPedido");
-        PedidoCriadoResponse pedidoCriadoResponse = pedidoService.criaNovoPedido(pedidoRequest);
+        PedidoCriadoResponse pedidoCriadoResponse = pedidoService.criaNovoPedido(pedidoRequest, idCliente);
         log.info("[finaliza] PedidoController - postCriaNovoPedido");
-        return null;
+        return pedidoCriadoResponse;
     }
 }

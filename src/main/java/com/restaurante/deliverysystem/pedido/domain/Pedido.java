@@ -1,5 +1,6 @@
 package com.restaurante.deliverysystem.pedido.domain;
 
+import com.restaurante.deliverysystem.pedido.application.api.PedidoRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotEmpty;
@@ -36,12 +37,11 @@ public class Pedido {
     @NotNull
     private LocalDateTime dataHoraDoPedido;
 
-    public Pedido(UUID idPedido, UUID idCliente, List<@Valid ItemCardapio> itens, String observacoes, BigDecimal valor,
-                  LocalDateTime dataHoraDoPedido) {
+    public Pedido(PedidoRequest pedidoNovoRequest, UUID idCliente) {
         this.idPedido = UUID.randomUUID();
         this.idCliente = idCliente;
-        this.itens = itens;
-        this.observacoes = observacoes;
+        this.itens = pedidoNovoRequest.getItens();
+        this.observacoes = pedidoNovoRequest.getObservacoes();
         this.valor = calculaValor(itens);
         this.dataHoraDoPedido = LocalDateTime.now();
     }
