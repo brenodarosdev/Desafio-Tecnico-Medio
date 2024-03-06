@@ -16,14 +16,15 @@ public class ClienteController implements ClienteAPI {
     @Override
     public ClienteCriadoResponse postCadastraNovoCliente(CienteNovoRequest clienteNovoRequest) {
         log.info("[inicia] ClienteController - postCadastraNovoCliente");
-        ClienteCriadoResponse clienteCriado = clienteService.cadastraNovoCliente(clienteNovoRequest);
+        ClienteCriadoResponse clienteCriadoResponse = clienteService.cadastraNovoCliente(clienteNovoRequest);
         log.info("[finaliza] ClienteController - postCadastraNovoCliente");
-        return clienteCriado;
+        return clienteCriadoResponse;
     }
 
     @Override
     public ClienteDetalhadoResponse getBuscaClientePorId(UUID idCliente) {
         log.info("[inicia] ClienteController - getBuscaClientePorId");
+        ClienteDetalhadoResponse clienteDetalhadoResponse = clienteService.buscaClientePorId(idCliente);
         log.info("[finaliza] ClienteController - getBuscaClientePorId");
         return null;
     }
