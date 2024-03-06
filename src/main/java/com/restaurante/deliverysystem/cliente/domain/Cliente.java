@@ -33,4 +33,10 @@ public class Cliente {
         this.nomeCompleto = clienteNovoRequest.getNomeCompleto();
         this.idade = clienteNovoRequest.getIdade();
     }
+
+    public void alteraCliente(CienteRequest alteraClienteRequest) {
+        this.email = alteraClienteRequest.getEmail();
+        this.nomeCompleto = alteraClienteRequest.getNomeCompleto();
+        this.idade = alteraClienteRequest.getIdade();
+    }
 }
