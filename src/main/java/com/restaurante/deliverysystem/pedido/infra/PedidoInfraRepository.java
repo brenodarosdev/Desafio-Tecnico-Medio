@@ -8,6 +8,8 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.Store;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @Repository
 @Log4j2
@@ -20,5 +22,12 @@ public class PedidoInfraRepository implements PedidoRepository {
         Pedido pedidoSalvo = pedidoSpringDataMongoDBRepository.save(pedido);
         log.info("[finaliza] PedidoInfraRepository - salva");
         return pedidoSalvo;
+    }
+
+    @Override
+    public Pedido pedidoPorId(UUID idPedido) {
+        log.info("[inicia] PedidoInfraRepository - pedidoPorId");
+        log.info("[finaliza] PedidoInfraRepository - pedidoPorId");
+        return null;
     }
 }
