@@ -17,4 +17,9 @@ public interface PedidoAPI {
     @ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Cria Pedido")
     PedidoCriadoResponse postCriaNovoPedido(@Valid @RequestBody PedidoRequest pedidoRequest,@PathVariable UUID idCliente);
+
+    @GetMapping("/{idPedido}")
+    @ResponseStatus(code = HttpStatus.OK)
+    @Operation(summary = "Busca Pedido por ID")
+    PedidoDetalhadoResponse getBuscaPedidoPorId(@PathVariable UUID idPedido);
 }

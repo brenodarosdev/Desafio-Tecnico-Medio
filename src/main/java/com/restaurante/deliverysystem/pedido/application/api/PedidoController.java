@@ -21,4 +21,11 @@ public class PedidoController implements PedidoAPI {
         log.info("[finaliza] PedidoController - postCriaNovoPedido");
         return pedidoCriadoResponse;
     }
+
+    @Override
+    public PedidoDetalhadoResponse getBuscaPedidoPorId(UUID idPedido) {
+        log.info("[inicia] PedidoController - getBuscaPedidoPorId");
+        log.info("[finaliza] PedidoController - getBuscaPedidoPorId");
+        return null;
+    }
 }
