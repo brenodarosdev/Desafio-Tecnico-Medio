@@ -1,6 +1,6 @@
 package com.restaurante.deliverysystem.cliente.domain;
 
-import com.restaurante.deliverysystem.cliente.application.api.CienteNovoRequest;
+import com.restaurante.deliverysystem.cliente.application.api.CienteRequest;
 import jakarta.validation.constraints.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -27,7 +27,7 @@ public class Cliente {
     @Min(18)
     private int idade;
 
-    public Cliente(CienteNovoRequest clienteNovoRequest) {
+    public Cliente(CienteRequest clienteNovoRequest) {
         this.idCliente = UUID.randomUUID();
         this.email = clienteNovoRequest.getEmail();
         this.nomeCompleto = clienteNovoRequest.getNomeCompleto();

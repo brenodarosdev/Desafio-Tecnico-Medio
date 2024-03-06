@@ -5,7 +5,7 @@ import lombok.Value;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 @Value
-public class CienteNovoRequest {
+public class CienteRequest {
     @Indexed(unique = true)
     @NotBlank
     @Email

@@ -1,6 +1,5 @@
 package com.restaurante.deliverysystem.cliente.application.api;
 
-import com.restaurante.deliverysystem.cliente.domain.Cliente;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -16,10 +15,15 @@ public interface ClienteAPI {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Cria novo Cliente")
-    ClienteCriadoResponse postCadastraNovoCliente(@RequestBody @Valid CienteNovoRequest clienteNovoRequest);
+    ClienteCriadoResponse postCadastraNovoCliente(@RequestBody @Valid CienteRequest clienteNovoRequest);
 
     @GetMapping("/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Busca Cliente por ID")
     ClienteDetalhadoResponse getBuscaClientePorId(@PathVariable UUID idCliente);
+
+    @PatchMapping("/editaCliente/{idCliente}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Altera Cliente")
+    void patchAlteraCliente(@RequestBody @Valid CienteRequest alteraClienteRequest, @PathVariable UUID idCliente);
 }
