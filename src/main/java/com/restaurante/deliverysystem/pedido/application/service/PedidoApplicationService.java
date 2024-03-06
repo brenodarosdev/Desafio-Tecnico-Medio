@@ -22,6 +22,6 @@ public class PedidoApplicationService implements PedidoService {
         log.info("[inicia] PedidoApplicationService - criaNovoPedido");
         Pedido pedido = pedidoRepository.salva(new Pedido(pedidoRequest, idCliente));
         log.info("[finaliza] PedidoApplicationService - criaNovoPedido");
-        return null;
+        return new PedidoCriadoResponse(pedido);
     }
 }
