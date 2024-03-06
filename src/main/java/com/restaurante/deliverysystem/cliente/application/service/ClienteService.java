@@ -9,4 +9,5 @@ import java.util.UUID;
 public interface ClienteService {
     ClienteCriadoResponse cadastraNovoCliente(CienteRequest clienteNovoRequest);
     ClienteDetalhadoResponse buscaClientePorId(UUID idCliente);
+    void alteraCliente(CienteRequest alteraClienteRequest, UUID idCliente);
 }

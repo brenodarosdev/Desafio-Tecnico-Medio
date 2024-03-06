@@ -32,7 +32,7 @@ public class ClienteController implements ClienteAPI {
     @Override
     public void patchAlteraCliente(CienteRequest alteraClienteRequest, UUID idCliente) {
         log.info("[inicia] ClienteController - patchAlteraCliente");
+        clienteService.alteraCliente(alteraClienteRequest, idCliente);
         log.info("[finaliza] ClienteController - patchAlteraCliente");
     }
-    // Testar!
 }
