@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.Store;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @Repository
 @Log4j2
@@ -19,5 +21,12 @@ public class ClienteInfraRepository implements ClienteRepository {
         Cliente clienteSalvo = clienteSpringDataMongoDBRepository.save(cliente);
         log.info("[finaliza] ClienteInfraRepository - salva");
         return clienteSalvo;
+    }
+
+    @Override
+    public Cliente clientePorId(UUID idCliente) {
+        log.info("[inicia] ClienteInfraRepository - clientePorId");
+        log.info("[finaliza] ClienteInfraRepository - clientePorId");
+        return null;
     }
 }
