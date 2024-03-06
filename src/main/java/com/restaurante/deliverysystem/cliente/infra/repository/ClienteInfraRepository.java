@@ -26,7 +26,10 @@ public class ClienteInfraRepository implements ClienteRepository {
     @Override
     public Cliente clientePorId(UUID idCliente) {
         log.info("[inicia] ClienteInfraRepository - clientePorId");
+        // TODO Tratar exeption
+        Cliente cliente = clienteSpringDataMongoDBRepository.findByIdCliente(idCliente)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
         log.info("[finaliza] ClienteInfraRepository - clientePorId");
-        return null;
+        return cliente;
     }
 }

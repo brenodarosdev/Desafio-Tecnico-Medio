@@ -32,6 +32,6 @@ public class ClienteApplicationService implements ClienteService {
         log.info("[inicia] ClienteApplicationService - buscaClientePorId");
         Cliente cliente = clienteRepository.clientePorId(idCliente);
         log.info("[finaliza] ClienteApplicationService - buscaClientePorId");
-        return null;
+        return new ClienteDetalhadoResponse(cliente);
     }
 }
