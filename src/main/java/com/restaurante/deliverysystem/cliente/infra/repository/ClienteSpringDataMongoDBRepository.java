@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface ClienteSpringDataMongoDBRepository extends MongoRepository<Cliente, UUID> {
     Optional<Cliente> findByIdCliente(UUID idCliente);
+    void deleteByIdCliente(UUID idCliente);
 }

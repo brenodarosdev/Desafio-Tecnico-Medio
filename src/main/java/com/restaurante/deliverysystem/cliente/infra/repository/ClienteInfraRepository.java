@@ -36,6 +36,7 @@ public class ClienteInfraRepository implements ClienteRepository {
     @Override
     public void deletaClientePorId(UUID idCliente) {
         log.info("[inicia] ClienteInfraRepository - deletaClientePorId");
+        clienteSpringDataMongoDBRepository.deleteByIdCliente(idCliente);
         log.info("[finaliza] ClienteInfraRepository - deletaClientePorId");
     }
 }
