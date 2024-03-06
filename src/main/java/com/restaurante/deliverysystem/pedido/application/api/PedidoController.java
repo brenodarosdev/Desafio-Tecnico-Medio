@@ -25,7 +25,8 @@ public class PedidoController implements PedidoAPI {
     @Override
     public PedidoDetalhadoResponse getBuscaPedidoPorId(UUID idPedido) {
         log.info("[inicia] PedidoController - getBuscaPedidoPorId");
+        PedidoDetalhadoResponse pedidoDetalhadoResponse = pedidoService.buscaPedidoPorId(idPedido);
         log.info("[finaliza] PedidoController - getBuscaPedidoPorId");
-        return null;
+        return pedidoDetalhadoResponse;
     }
 }

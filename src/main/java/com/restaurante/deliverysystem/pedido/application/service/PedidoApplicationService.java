@@ -2,6 +2,7 @@ package com.restaurante.deliverysystem.pedido.application.service;
 
 import com.restaurante.deliverysystem.cliente.application.repository.ClienteRepository;
 import com.restaurante.deliverysystem.pedido.application.api.PedidoCriadoResponse;
+import com.restaurante.deliverysystem.pedido.application.api.PedidoDetalhadoResponse;
 import com.restaurante.deliverysystem.pedido.application.api.PedidoRequest;
 import com.restaurante.deliverysystem.pedido.application.repository.PedidoRepository;
 import com.restaurante.deliverysystem.pedido.domain.Pedido;
@@ -23,5 +24,12 @@ public class PedidoApplicationService implements PedidoService {
         Pedido pedido = pedidoRepository.salva(new Pedido(pedidoRequest, idCliente));
         log.info("[finaliza] PedidoApplicationService - criaNovoPedido");
         return new PedidoCriadoResponse(pedido);
+    }
+
+    @Override
+    public PedidoDetalhadoResponse buscaPedidoPorId(UUID idPedido) {
+        log.info("[inicia] PedidoApplicationService - buscaPedidoPorId");
+        log.info("[finaliza] PedidoApplicationService - buscaPedidoPorId");
+        return null;
     }
 }
