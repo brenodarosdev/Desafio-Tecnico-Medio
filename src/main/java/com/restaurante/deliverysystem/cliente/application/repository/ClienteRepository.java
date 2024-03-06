@@ -7,4 +7,5 @@ import java.util.UUID;
 public interface ClienteRepository {
     Cliente salva(Cliente cliente);
     Cliente clientePorId(UUID idCliente);
+    void deletaClientePorId(UUID idCliente);
 }

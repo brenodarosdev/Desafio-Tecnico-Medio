@@ -32,4 +32,10 @@ public class ClienteInfraRepository implements ClienteRepository {
         log.info("[finaliza] ClienteInfraRepository - clientePorId");
         return cliente;
     }
+
+    @Override
+    public void deletaClientePorId(UUID idCliente) {
+        log.info("[inicia] ClienteInfraRepository - deletaClientePorId");
+        log.info("[finaliza] ClienteInfraRepository - deletaClientePorId");
+    }
 }
