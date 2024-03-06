@@ -1,4 +1,4 @@
-package com.restaurante.deliverysystem.cliente.infra.repository;
+package com.restaurante.deliverysystem.cliente.infra;
 
 import com.restaurante.deliverysystem.cliente.domain.Cliente;
 import org.springframework.data.mongodb.repository.MongoRepository;

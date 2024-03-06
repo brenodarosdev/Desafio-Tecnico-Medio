@@ -1,10 +1,9 @@
-package com.restaurante.deliverysystem.cliente.infra.repository;
+package com.restaurante.deliverysystem.cliente.infra;
 
 import com.restaurante.deliverysystem.cliente.application.repository.ClienteRepository;
 import com.restaurante.deliverysystem.cliente.domain.Cliente;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.apache.catalina.Store;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
