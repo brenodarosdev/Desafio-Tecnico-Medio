@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface PedidoSpringDataMongoDBRepository extends MongoRepository<Pedido, UUID> {
     Optional<Pedido> findByIdPedido(UUID idPedido);
+    void deleteByIdPedido(UUID idPedido);
 }

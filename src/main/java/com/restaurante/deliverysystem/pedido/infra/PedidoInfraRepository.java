@@ -37,6 +37,7 @@ public class PedidoInfraRepository implements PedidoRepository {
     @Override
     public void deletaPedidoPorId(UUID idPedido) {
         log.info("[inicia] PedidoInfraRepository - deletaPedidoPorId");
+        pedidoSpringDataMongoDBRepository.deleteByIdPedido(idPedido);
         log.info("[finaliza] PedidoInfraRepository - deletaPedidoPorId");
     }
 }
