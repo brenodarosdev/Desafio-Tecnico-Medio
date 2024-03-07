@@ -33,4 +33,10 @@ public class PedidoInfraRepository implements PedidoRepository {
         log.info("[finaliza] PedidoInfraRepository - pedidoPorId");
         return pedido;
     }
+
+    @Override
+    public void deletaPedidoPorId(UUID idPedido) {
+        log.info("[inicia] PedidoInfraRepository - deletaPedidoPorId");
+        log.info("[finaliza] PedidoInfraRepository - deletaPedidoPorId");
+    }
 }
