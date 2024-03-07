@@ -27,4 +27,9 @@ public interface PedidoAPI {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @Operation(summary = "Altera Pedido")
     void patchAlteraPedido(@Valid @RequestBody PedidoRequest alteraPedidoRequest, @PathVariable UUID idPedido);
+
+    @DeleteMapping("/deletaPedido/{idPedido}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Deleta Pedido")
+    void deleteDeletaPedido(@PathVariable UUID idPedido);
 }

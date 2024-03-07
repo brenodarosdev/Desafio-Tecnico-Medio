@@ -36,4 +36,10 @@ public class PedidoController implements PedidoAPI {
         pedidoService.alteraPedido(alteraPedidoRequest, idPedido);
         log.info("[finaliza PedidoController - patchAlteraPedido");
     }
+
+    @Override
+    public void deleteDeletaPedido(UUID idPedido) {
+        log.info("[inicia] PedidoController - deleteDeletaPedido");
+        log.info("[finaliza] PedidoController - deleteDeletaPedido");
+    }
 }
