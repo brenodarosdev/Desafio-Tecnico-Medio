@@ -29,4 +29,10 @@ public class PedidoController implements PedidoAPI {
         log.info("[finaliza] PedidoController - getBuscaPedidoPorId");
         return pedidoDetalhadoResponse;
     }
+
+    @Override
+    public void patchAlteraPedido(PedidoRequest alteraPedidoRequest, UUID idPedido) {
+        log.info("[inicia] PedidoController - patchAlteraPedido");
+        log.info("[finaliza PedidoController - patchAlteraPedido");
+    }
 }

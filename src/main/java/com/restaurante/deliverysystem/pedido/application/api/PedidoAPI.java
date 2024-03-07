@@ -16,10 +16,15 @@ public interface PedidoAPI {
     @PostMapping("/novoPedido/{idCliente}")
     @ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Cria Pedido")
-    PedidoCriadoResponse postCriaNovoPedido(@Valid @RequestBody PedidoRequest pedidoRequest,@PathVariable UUID idCliente);
+    PedidoCriadoResponse postCriaNovoPedido(@Valid @RequestBody PedidoRequest pedidoRequest, @PathVariable UUID idCliente);
 
     @GetMapping("/{idPedido}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Busca Pedido por ID")
     PedidoDetalhadoResponse getBuscaPedidoPorId(@PathVariable UUID idPedido);
+
+    @PatchMapping("/editaPedido/{idPedido}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Altera Pedido")
+    void patchAlteraPedido(@Valid @RequestBody PedidoRequest alteraPedidoRequest, @PathVariable UUID idPedido);
 }
