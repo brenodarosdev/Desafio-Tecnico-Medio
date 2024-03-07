@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,6 +23,11 @@ public interface PedidoAPI {
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Busca Pedido por ID")
     PedidoDetalhadoResponse getBuscaPedidoPorId(@PathVariable UUID idPedido);
+
+    @GetMapping("/pedidos/{idCliente}")
+    @ResponseStatus(code = HttpStatus.OK)
+    @Operation(summary = "Lista Pedidos por ID do Cliente")
+    List<PedidoDetalhadoResponse> getListaTodosPedidoPorIdCliente(@PathVariable UUID idCliente);
 
     @PatchMapping("/editaPedido/{idPedido}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
