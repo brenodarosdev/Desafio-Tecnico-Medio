@@ -1,6 +1,5 @@
 package com.restaurante.deliverysystem.pedido.application.api;
 
-import com.restaurante.deliverysystem.pedido.domain.Pedido;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -27,7 +26,7 @@ public interface PedidoAPI {
     @GetMapping("/pedidos/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Lista Pedidos por ID do Cliente")
-    List<PedidoDetalhadoResponse> getListaTodosPedidoPorIdCliente(@PathVariable UUID idCliente);
+    List<PedidoDetalhadoResponse> getListaTodosPedidosPorIdCliente(@PathVariable UUID idCliente);
 
     @PatchMapping("/editaPedido/{idPedido}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

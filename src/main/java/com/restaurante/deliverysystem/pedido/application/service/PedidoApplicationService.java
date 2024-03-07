@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -32,6 +33,13 @@ public class PedidoApplicationService implements PedidoService {
         Pedido pedido = pedidoRepository.pedidoPorId(idPedido);
         log.info("[finaliza] PedidoApplicationService - buscaPedidoPorId");
         return new PedidoDetalhadoResponse(pedido);
+    }
+
+    @Override
+    public List<PedidoDetalhadoResponse> listaTodosPedidosPorIdCliente(UUID idCliente) {
+        log.info("[inicia] PedidoApplicationService - listaTodosPedidosPorIdCliente");
+        log.info("[finaliza] PedidoApplicationService - listaTodosPedidosPorIdCliente");
+        return null;
     }
 
     @Override
