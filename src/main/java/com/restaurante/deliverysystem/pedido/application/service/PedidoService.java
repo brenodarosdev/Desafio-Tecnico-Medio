@@ -10,4 +10,5 @@ public interface PedidoService {
     PedidoCriadoResponse criaNovoPedido(PedidoRequest pedidoRequest, UUID idCliente);
     PedidoDetalhadoResponse buscaPedidoPorId(UUID idPedido);
     void alteraPedido(PedidoRequest alteraPedidoRequest, UUID idPedido);
+    void deletaPedido(UUID idPedido);
 }

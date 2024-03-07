@@ -40,6 +40,7 @@ public class PedidoController implements PedidoAPI {
     @Override
     public void deleteDeletaPedido(UUID idPedido) {
         log.info("[inicia] PedidoController - deleteDeletaPedido");
+        pedidoService.deletaPedido(idPedido);
         log.info("[finaliza] PedidoController - deleteDeletaPedido");
     }
 }
