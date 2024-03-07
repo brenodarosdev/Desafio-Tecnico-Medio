@@ -38,8 +38,9 @@ public class PedidoInfraRepository implements PedidoRepository {
     @Override
     public List<Pedido> pedidosPorIdCliente(UUID idCliente) {
         log.info("[inicia] PedidoInfraRepository - pedidosPorIdCliente");
+        List<Pedido> pedidosDoCliente = pedidoSpringDataMongoDBRepository.findAllByIdCliente(idCliente);
         log.info("[finaliza] PedidoInfraRepository - pedidosPorIdCliente");
-        return null;
+        return pedidosDoCliente;
     }
 
     @Override

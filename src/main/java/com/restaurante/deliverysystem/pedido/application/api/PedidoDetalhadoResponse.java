@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Value
 public class PedidoDetalhadoResponse {
@@ -31,5 +32,11 @@ public class PedidoDetalhadoResponse {
         this.observacoes = pedido.getObservacoes();
         this.valor = pedido.getValor();
         this.dataHoraDoPedido = pedido.getDataHoraDoPedido();
+    }
+
+    public static List<PedidoDetalhadoResponse> converte(List<Pedido> pedidos) {
+        return pedidos.stream()
+                .map(PedidoDetalhadoResponse::new)
+                .collect(Collectors.toList());
     }
 }
