@@ -33,4 +33,10 @@ public class PedidoApplicationService implements PedidoService {
         log.info("[finaliza] PedidoApplicationService - buscaPedidoPorId");
         return new PedidoDetalhadoResponse(pedido);
     }
+
+    @Override
+    public void alteraPedido(PedidoRequest alteraPedidoRequest, UUID idPedido) {
+        log.info("[inicia] PedidoApplicationService - alteraPedido");
+        log.info("[finaliza] PedidoApplicationService - alteraPedido");
+    }
 }

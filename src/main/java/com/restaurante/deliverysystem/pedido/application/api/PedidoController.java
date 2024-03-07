@@ -33,6 +33,7 @@ public class PedidoController implements PedidoAPI {
     @Override
     public void patchAlteraPedido(PedidoRequest alteraPedidoRequest, UUID idPedido) {
         log.info("[inicia] PedidoController - patchAlteraPedido");
+        pedidoService.alteraPedido(alteraPedidoRequest, idPedido);
         log.info("[finaliza PedidoController - patchAlteraPedido");
     }
 }
