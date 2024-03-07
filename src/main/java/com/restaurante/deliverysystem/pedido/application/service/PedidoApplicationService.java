@@ -38,6 +38,7 @@ public class PedidoApplicationService implements PedidoService {
     @Override
     public List<PedidoDetalhadoResponse> listaTodosPedidosPorIdCliente(UUID idCliente) {
         log.info("[inicia] PedidoApplicationService - listaTodosPedidosPorIdCliente");
+        List<Pedido> pedidos = pedidoRepository.pedidosPorIdCliente(idCliente);
         log.info("[finaliza] PedidoApplicationService - listaTodosPedidosPorIdCliente");
         return null;
     }

@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.Store;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -32,6 +33,13 @@ public class PedidoInfraRepository implements PedidoRepository {
                 .orElseThrow(() -> new RuntimeException("Pedido não encontrado!"));
         log.info("[finaliza] PedidoInfraRepository - pedidoPorId");
         return pedido;
+    }
+
+    @Override
+    public List<Pedido> pedidosPorIdCliente(UUID idCliente) {
+        log.info("[inicia] PedidoInfraRepository - pedidosPorIdCliente");
+        log.info("[finaliza] PedidoInfraRepository - pedidosPorIdCliente");
+        return null;
     }
 
     @Override
