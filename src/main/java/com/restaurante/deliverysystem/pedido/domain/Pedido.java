@@ -53,4 +53,10 @@ public class Pedido {
         }
         return total;
     }
+
+    public void alteraPedido(PedidoRequest alteraPedidoRequest) {
+        this.itens = alteraPedidoRequest.getItens();
+        this.observacoes = alteraPedidoRequest.getObservacoes();
+        this.valor = calculaValor(itens);
+    }
 }
