@@ -7,12 +7,15 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @Tag(name = "Entrega")
 @RequestMapping("/entrega")
 public interface EntregaAPI {
-    @PostMapping
+    @PostMapping("/novaEntrega/{idPedido}")
     @ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Cria nova Entrega")
-    EntregaCriadaResponse postCriaNovaEntrega(@Valid @RequestBody EntregaRequest entregaNovoRequest);
+    EntregaCriadaResponse postCriaNovaEntrega(@Valid @RequestBody EntregaRequest entregaNovoRequest,
+                                              @PathVariable UUID idPedido);
 }

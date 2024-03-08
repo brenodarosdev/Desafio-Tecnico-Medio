@@ -1,5 +1,6 @@
 package com.restaurante.deliverysystem.entrega.domain;
 
+import com.restaurante.deliverysystem.entrega.application.api.EntregaRequest;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -32,15 +33,14 @@ public class Entrega {
     private String numeroDaCasa;
     private LocalDateTime dataHoraDaEntrega;
 
-    public Entrega(UUID idEntrega, UUID idPedido, String nomeDoEntregador, StatusEntrega status,
-                   String bairro, String rua, String numeroDaCasa, LocalDateTime dataHoraDaEntrega) {
+    public Entrega(EntregaRequest entregaNovoRequest, UUID idPedido) {
         this.idEntrega = UUID.randomUUID();
         this.idPedido = idPedido;
         this.status = StatusEntrega.PREPARANDO_PEDIDO;
-        this.nomeDoEntregador = nomeDoEntregador;
-        this.bairro = bairro;
-        this.rua = rua;
-        this.numeroDaCasa = numeroDaCasa;
+        this.nomeDoEntregador = entregaNovoRequest.getNomeDoEntregador();
+        this.bairro = entregaNovoRequest.getBairro();
+        this.rua = entregaNovoRequest.getRua();
+        this.numeroDaCasa = entregaNovoRequest.getNumeroDaCasa();
         this.dataHoraDaEntrega = null;
     }
 }

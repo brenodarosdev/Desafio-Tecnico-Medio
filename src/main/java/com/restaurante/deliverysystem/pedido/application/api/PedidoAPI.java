@@ -15,7 +15,7 @@ import java.util.UUID;
 public interface PedidoAPI {
     @PostMapping("/novoPedido/{idCliente}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    @Operation(summary = "Cria Pedido")
+    @Operation(summary = "Cria novo Pedido")
     PedidoCriadoResponse postCriaNovoPedido(@Valid @RequestBody PedidoRequest pedidoRequest, @PathVariable UUID idCliente);
 
     @GetMapping("/{idPedido}")
