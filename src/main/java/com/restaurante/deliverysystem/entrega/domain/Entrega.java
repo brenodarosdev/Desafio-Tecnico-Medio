@@ -43,4 +43,11 @@ public class Entrega {
         this.numeroDaCasa = entregaNovoRequest.getNumeroDaCasa();
         this.dataHoraDaEntrega = null;
     }
+
+    public void alteraEntrega(EntregaRequest entregaAlteraRequest) {
+        this.nomeDoEntregador = entregaAlteraRequest.getNomeDoEntregador();
+        this.bairro = entregaAlteraRequest.getBairro();
+        this.rua = entregaAlteraRequest.getRua();
+        this.numeroDaCasa = entregaAlteraRequest.getNumeroDaCasa();
+    }
 }

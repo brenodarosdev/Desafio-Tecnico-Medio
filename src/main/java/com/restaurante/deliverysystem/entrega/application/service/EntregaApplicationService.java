@@ -37,6 +37,9 @@ public class EntregaApplicationService implements EntregaService {
     @Override
     public void alteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega) {
         log.info("[inicia] EntregaApplicationService - alteraEntrega");
+        Entrega entrega = entregaRepository.entregaPorId(idEntrega);
+        entrega.alteraEntrega(entregaAlteraRequest);
+        entregaRepository.salva(entrega);
         log.info("[finaliza] EntregaApplicationService - alteraEntrega");
     }
 }
