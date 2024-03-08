@@ -51,4 +51,10 @@ public class EntregaApplicationService implements EntregaService {
         entregaRepository.salva(entrega);
         log.info("[finaliza] EntregaApplicationService - alteraStatusParaACaminho");
     }
+
+    @Override
+    public void alteraStatusParaEntregue(UUID idEntrega) {
+        log.info("[inicia] EntregaApplicationService - alteraStatusParaEntregue");
+        log.info("[finaliza] EntregaApplicationService - alteraStatusParaEntregue");
+    }
 }

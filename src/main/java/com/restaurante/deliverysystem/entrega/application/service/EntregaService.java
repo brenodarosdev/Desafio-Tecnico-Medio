@@ -11,4 +11,5 @@ public interface EntregaService {
     EntregaDetalhadaResponse buscaEntregaPorId(UUID idEntrega);
     void alteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega);
     void alteraStatusParaACaminho(UUID idEntrega);
+    void alteraStatusParaEntregue(UUID idEntrega);
 }
