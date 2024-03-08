@@ -1,6 +1,7 @@
 package com.restaurante.deliverysystem.entrega.application.service;
 
 import com.restaurante.deliverysystem.entrega.application.api.EntregaCriadaResponse;
+import com.restaurante.deliverysystem.entrega.application.api.EntregaDetalhadaResponse;
 import com.restaurante.deliverysystem.entrega.application.api.EntregaRequest;
 import com.restaurante.deliverysystem.entrega.application.repository.EntregaRepository;
 import com.restaurante.deliverysystem.entrega.domain.Entrega;
@@ -23,5 +24,12 @@ public class EntregaApplicationService implements EntregaService {
         Entrega entrega = entregaRepository.salva(new Entrega(entregaNovoRequest, idPedido));
         log.info("[finaliza] EntregaApplicationService - criaNovaEntrega");
         return new EntregaCriadaResponse(entrega);
+    }
+
+    @Override
+    public EntregaDetalhadaResponse buscaEntregaPorId(UUID idEntrega) {
+        log.info("[inicia] EntregaApplicationService - buscaEntregaPorId");
+        log.info("[finaliza] EntregaApplicationService - buscaEntregaPorId");
+        return null;
     }
 }
