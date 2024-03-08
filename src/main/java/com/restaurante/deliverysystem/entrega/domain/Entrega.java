@@ -50,4 +50,13 @@ public class Entrega {
         this.rua = entregaAlteraRequest.getRua();
         this.numeroDaCasa = entregaAlteraRequest.getNumeroDaCasa();
     }
+
+    public void alteraStatusParaACaminho(Entrega entrega) {
+        if (!this.status.equals(StatusEntrega.A_CAMINHO)) {
+            this.status = StatusEntrega.A_CAMINHO;
+        } else {
+            // TODO Tratar Exception
+            throw new RuntimeException("O status já está definido para A Caminho");
+        }
+    }
 }
