@@ -28,4 +28,10 @@ public class EntregaController implements EntregaAPI {
         log.info("[finaliza] EntregaController - getBuscaEntregaPorId");
         return entregaDetalhadaResponse;
     }
+
+    @Override
+    public void patchAlteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega) {
+        log.info("[inicia] EntregaController - patchAlteraEntrega");
+        log.info("[finaliza] EntregaController - patchAlteraEntrega");
+    }
 }

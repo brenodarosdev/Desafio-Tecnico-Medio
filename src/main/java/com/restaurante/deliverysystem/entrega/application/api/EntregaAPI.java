@@ -23,4 +23,9 @@ public interface EntregaAPI {
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Busca Entrega por ID")
     EntregaDetalhadaResponse getBuscaEntregaPorId(@PathVariable UUID idEntrega);
+
+    @PatchMapping("/editaEntrega/{idEntrega}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Altera Entrega")
+    void patchAlteraEntrega(@Valid @RequestBody EntregaRequest entregaAlteraRequest, @PathVariable UUID idEntrega);
 }
