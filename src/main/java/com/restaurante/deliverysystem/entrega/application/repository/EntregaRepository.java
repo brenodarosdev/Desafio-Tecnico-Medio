@@ -8,4 +8,8 @@ import java.util.UUID;
 
 public interface EntregaRepository {
     Entrega salva(Entrega entrega);
+<<<<<<< Updated upstream
+=======
+    Entrega entregaPorId(UUID idEntrega);
+>>>>>>> Stashed changes
 }
