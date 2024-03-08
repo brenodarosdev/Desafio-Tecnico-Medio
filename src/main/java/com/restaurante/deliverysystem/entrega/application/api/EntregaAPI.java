@@ -18,4 +18,9 @@ public interface EntregaAPI {
     @Operation(summary = "Cria nova Entrega")
     EntregaCriadaResponse postCriaNovaEntrega(@Valid @RequestBody EntregaRequest entregaNovoRequest,
                                               @PathVariable UUID idPedido);
+
+    @GetMapping("/{idEntrega}")
+    @ResponseStatus(code = HttpStatus.OK)
+    @Operation(summary = "Busca Entrega por ID")
+    EntregaDetalhadaResponse getBuscaEntregaPorId(@PathVariable UUID idEntrega);
 }

@@ -20,4 +20,11 @@ public class EntregaController implements EntregaAPI {
         log.info("[finaliza] EntregaController - postCriaNovaEntrega");
         return entregaCriadaResponse;
     }
+
+    @Override
+    public EntregaDetalhadaResponse getBuscaEntregaPorId(UUID idEntrega) {
+        log.info("[inicia] EntregaController - getBuscaEntregaPorId");
+        log.info("[finaliza] EntregaController - getBuscaEntregaPorId");
+        return null;
+    }
 }
