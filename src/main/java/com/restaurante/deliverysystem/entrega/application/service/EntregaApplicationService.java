@@ -33,4 +33,10 @@ public class EntregaApplicationService implements EntregaService {
         log.info("[finaliza] EntregaApplicationService - buscaEntregaPorId");
         return new EntregaDetalhadaResponse(entrega);
     }
+
+    @Override
+    public void alteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega) {
+        log.info("[inicia] EntregaApplicationService - alteraEntrega");
+        log.info("[finaliza] EntregaApplicationService - alteraEntrega");
+    }
 }
