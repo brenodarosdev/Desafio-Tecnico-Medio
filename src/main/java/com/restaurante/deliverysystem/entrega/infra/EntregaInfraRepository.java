@@ -1,7 +1,6 @@
 package com.restaurante.deliverysystem.entrega.infra;
 
 import com.restaurante.deliverysystem.entrega.application.api.EntregaCriadaResponse;
-import com.restaurante.deliverysystem.entrega.application.api.EntregaDetalhadaResponse;
 import com.restaurante.deliverysystem.entrega.application.api.EntregaRequest;
 import com.restaurante.deliverysystem.entrega.application.repository.EntregaRepository;
 import com.restaurante.deliverysystem.entrega.domain.Entrega;
@@ -24,12 +23,5 @@ public class EntregaInfraRepository implements EntregaRepository {
         Entrega entregaSalva = entregaSpringDataMongoDBRepository.save(entrega);
         log.info("[finaliza] EntregaInfraRepository - salva");
         return entregaSalva;
-    }
-
-    @Override
-    public EntregaDetalhadaResponse entregaPorId(UUID idEntrega) {
-        log.info("[inicia] EntregaInfraRepository - entregaPorId");
-        log.info("[finaliza] EntregaInfraRepository - entregaPorId");
-        return null;
     }
 }
