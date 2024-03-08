@@ -20,10 +20,10 @@ public class Entrega {
     private UUID idEntrega;
     @Indexed
     private UUID idPedido;
-    @NotBlank
-    private String nomeDoEntregador;
     @NotNull
     private StatusEntrega status;
+    @NotBlank
+    private String nomeDoEntregador;
     @NotBlank
     private String bairro;
     @NotBlank
@@ -36,8 +36,8 @@ public class Entrega {
                    String bairro, String rua, String numeroDaCasa, LocalDateTime dataHoraDaEntrega) {
         this.idEntrega = UUID.randomUUID();
         this.idPedido = idPedido;
+        this.status = StatusEntrega.PREPARANDO_PEDIDO;
         this.nomeDoEntregador = nomeDoEntregador;
-        this.status = status;
         this.bairro = bairro;
         this.rua = rua;
         this.numeroDaCasa = numeroDaCasa;
