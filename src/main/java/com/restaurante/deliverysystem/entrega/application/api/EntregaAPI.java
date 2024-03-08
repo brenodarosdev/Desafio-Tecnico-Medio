@@ -28,4 +28,9 @@ public interface EntregaAPI {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @Operation(summary = "Altera Entrega")
     void patchAlteraEntrega(@Valid @RequestBody EntregaRequest entregaAlteraRequest, @PathVariable UUID idEntrega);
+
+    @PatchMapping("/aCaminho/{idEntrega}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Muda status para A_CAMINHO")
+    void patchAlteraStatusParaACaminho(@PathVariable UUID idEntrega);
 }
