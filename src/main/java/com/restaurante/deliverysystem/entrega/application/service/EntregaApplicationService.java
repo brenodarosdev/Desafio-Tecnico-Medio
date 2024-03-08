@@ -29,6 +29,7 @@ public class EntregaApplicationService implements EntregaService {
     @Override
     public EntregaDetalhadaResponse buscaEntregaPorId(UUID idEntrega) {
         log.info("[inicia] EntregaApplicationService - buscaEntregaPorId");
+        EntregaDetalhadaResponse entregaDetalhadaResponse = entregaRepository.entregaPorId(idEntrega);
         log.info("[finaliza] EntregaApplicationService - buscaEntregaPorId");
         return null;
     }
