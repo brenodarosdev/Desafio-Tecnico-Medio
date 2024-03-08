@@ -39,6 +39,7 @@ public class EntregaController implements EntregaAPI {
     @Override
     public void patchAlteraStatusParaACaminho(UUID idEntrega) {
         log.info("[inicia] EntregaController - patchAlteraStatusParaACaminho");
+        entregaService.alteraStatusParaACaminho(idEntrega);
         log.info("[finaliza] EntregaController - patchAlteraStatusParaACaminho");
     }
 }

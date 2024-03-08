@@ -10,4 +10,5 @@ public interface EntregaService {
     EntregaCriadaResponse criaNovaEntrega(EntregaRequest entregaNovoRequest, UUID idPedido);
     EntregaDetalhadaResponse buscaEntregaPorId(UUID idEntrega);
     void alteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega);
+    void alteraStatusParaACaminho(UUID idEntrega);
 }
