@@ -9,5 +9,5 @@ import java.util.UUID;
 
 public interface EntregaRepository {
     Entrega salva(Entrega entrega);
-    EntregaDetalhadaResponse entregaPorId(UUID idEntrega);
+    Entrega entregaPorId(UUID idEntrega);
 }

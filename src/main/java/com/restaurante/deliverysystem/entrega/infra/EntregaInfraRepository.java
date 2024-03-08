@@ -27,9 +27,12 @@ public class EntregaInfraRepository implements EntregaRepository {
     }
 
     @Override
-    public EntregaDetalhadaResponse entregaPorId(UUID idEntrega) {
+    public Entrega entregaPorId(UUID idEntrega) {
         log.info("[inicia] EntregaInfraRepository - entregaPorId");
+        // TODO Implementar tratamento exception
+        Entrega entrega = entregaSpringDataMongoDBRepository.findByIdEntrega(idEntrega)
+                .orElseThrow(() -> new RuntimeException("Entrega não encontrada!"));
         log.info("[finaliza] EntregaInfraRepository - entregaPorId");
-        return null;
+        return entrega;
     }
 }
