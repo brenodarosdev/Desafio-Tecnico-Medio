@@ -33,4 +33,9 @@ public interface EntregaAPI {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @Operation(summary = "Muda status para A_CAMINHO")
     void patchAlteraStatusParaACaminho(@PathVariable UUID idEntrega);
+
+    @PatchMapping("/entregue/{idEntrega}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Muda status para ENTREGUE")
+    void patchAlteraStatusParaEntregue(@PathVariable UUID idEntrega);
 }
