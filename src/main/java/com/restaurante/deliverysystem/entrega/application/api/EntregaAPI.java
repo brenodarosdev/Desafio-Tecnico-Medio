@@ -38,4 +38,9 @@ public interface EntregaAPI {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @Operation(summary = "Muda status para ENTREGUE")
     void patchAlteraStatusParaEntregue(@PathVariable UUID idEntrega);
+
+    @DeleteMapping("/deletaEntrega/{idEntrega}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Deleta Entrega")
+    void deleteDeletaEntrega(@PathVariable UUID idEntrega);
 }
