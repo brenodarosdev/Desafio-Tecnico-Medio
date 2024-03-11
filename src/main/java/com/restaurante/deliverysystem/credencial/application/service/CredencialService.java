@@ -7,4 +7,5 @@ import lombok.Value;
 
 public interface CredencialService {
     void criaNovaCredencial(CienteRequest clienteNovoRequest);
+    Credencial buscaCredencialPorEmail(String email);
 }

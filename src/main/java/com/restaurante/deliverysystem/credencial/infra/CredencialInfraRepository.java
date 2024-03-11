@@ -14,9 +14,19 @@ public class CredencialInfraRepository implements CredencialRepository {
     private final CredencialSpringDataMongoDBRepository credencialSpringDataMongoDBRepository;
 
     @Override
-    public void salva(Credencial novaCredencial) {
+    public Credencial salva(Credencial novaCredencial) {
         log.info("[inicia] CredencialInfraRepository - salva");
-        credencialSpringDataMongoDBRepository.save(novaCredencial);
+        Credencial credencialSalva = credencialSpringDataMongoDBRepository.save(novaCredencial);
         log.info("[finaliza] CredencialInfraRepository - salva");
+        return credencialSalva;
+    }
+
+    @Override
+    public Credencial buscaCredencialPorEmail(String email) {
+        log.info("[inicia] CredencialInfraRepository - buscaCredencialPorEmail");
+        var credencial = credencialSpringDataMongoDBRepository.findByIdEmail(email)
+                .orElseThrow(() -> new RuntimeException("Não existe credencial para o email informado!"));
+        log.info("[finaliza] CredencialInfraRepository - buscaCredencialPorEmail");
+        return credencial;
     }
 }

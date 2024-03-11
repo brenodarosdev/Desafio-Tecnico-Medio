@@ -20,4 +20,12 @@ public class CredencialApplicationService implements CredencialService {
         credencialRepository.salva(novaCredencial);
         log.info("[finaliza] CredencialApplicationService - criaNovaCredencial");
     }
+
+    @Override
+    public Credencial buscaCredencialPorEmail(String email) {
+        log.info("[inicia] CredencialApplicationService - buscaCredencialPorEmail");
+        Credencial credencial = credencialRepository.buscaCredencialPorEmail(email);
+        log.info("[finaliza] CredencialApplicationService - buscaCredencialPorEmail");
+        return credencial;
+    }
 }
