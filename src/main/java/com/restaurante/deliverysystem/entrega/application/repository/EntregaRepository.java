@@ -9,4 +9,5 @@ import java.util.UUID;
 public interface EntregaRepository {
     Entrega salva(Entrega entrega);
     Entrega entregaPorId(UUID idEntrega);
+    void deletaEntregaPorId(UUID idEntrega);
 }

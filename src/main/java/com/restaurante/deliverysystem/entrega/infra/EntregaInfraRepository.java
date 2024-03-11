@@ -34,4 +34,10 @@ public class EntregaInfraRepository implements EntregaRepository {
         log.info("[finaliza] EntregaInfraRepository - entregaPorId");
         return entrega;
     }
+
+    @Override
+    public void deletaEntregaPorId(UUID idEntrega) {
+        log.info("[inicia] EntregaInfraRepository - deletaEntregaPorId");
+        log.info("[finaliza] EntregaInfraRepository - deletaEntregaPorId");
+    }
 }
