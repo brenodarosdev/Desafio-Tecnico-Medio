@@ -10,6 +10,9 @@ public class CienteRequest {
     @NotBlank
     @Email
     private String email;
+    @Size(min = 6, max = 60)
+    @NotBlank
+    private String senha;
     @NotBlank
     private String nomeCompleto;
     @NotNull
