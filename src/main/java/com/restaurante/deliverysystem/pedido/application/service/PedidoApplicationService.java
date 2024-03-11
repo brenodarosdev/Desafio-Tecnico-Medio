@@ -19,10 +19,12 @@ import java.util.UUID;
 @Log4j2
 public class PedidoApplicationService implements PedidoService {
     private final PedidoRepository pedidoRepository;
+    private final ClienteRepository clienteRepository;
 
     @Override
     public PedidoCriadoResponse criaNovoPedido(PedidoRequest pedidoRequest, UUID idCliente) {
         log.info("[inicia] PedidoApplicationService - criaNovoPedido");
+        clienteRepository.clientePorId(idCliente);
         Pedido pedido = pedidoRepository.salva(new Pedido(pedidoRequest, idCliente));
         log.info("[finaliza] PedidoApplicationService - criaNovoPedido");
         return new PedidoCriadoResponse(pedido);
