@@ -63,6 +63,7 @@ public class Entrega {
     public void alteraStatusParaEntregue() {
         if (!this.status.equals(StatusEntrega.ENTREGUE)) {
             this.status = StatusEntrega.ENTREGUE;
+            this.dataHoraDaEntrega = LocalDateTime.now();
         } else {
             // TODO Tratar Exception
             throw new RuntimeException("O status já está definido para Entregue");
