@@ -38,6 +38,7 @@ public class EntregaInfraRepository implements EntregaRepository {
     @Override
     public void deletaEntregaPorId(UUID idEntrega) {
         log.info("[inicia] EntregaInfraRepository - deletaEntregaPorId");
+        entregaSpringDataMongoDBRepository.deleteByIdEntrega(idEntrega);
         log.info("[finaliza] EntregaInfraRepository - deletaEntregaPorId");
     }
 }
