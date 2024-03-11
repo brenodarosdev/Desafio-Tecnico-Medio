@@ -1,5 +1,6 @@
 package com.restaurante.deliverysystem.entrega.application.service;
 
+import com.restaurante.deliverysystem.cliente.application.repository.ClienteRepository;
 import com.restaurante.deliverysystem.entrega.application.api.EntregaCriadaResponse;
 import com.restaurante.deliverysystem.entrega.application.api.EntregaDetalhadaResponse;
 import com.restaurante.deliverysystem.entrega.application.api.EntregaRequest;
@@ -17,10 +18,12 @@ import java.util.UUID;
 @Log4j2
 public class EntregaApplicationService implements EntregaService {
     private final EntregaRepository entregaRepository;
+    private final PedidoRepository pedidoRepository;
 
     @Override
     public EntregaCriadaResponse criaNovaEntrega(EntregaRequest entregaNovoRequest, UUID idPedido) {
         log.info("[inicia] EntregaApplicationService - criaNovaEntrega");
+        pedidoRepository.pedidoPorId(idPedido);
         Entrega entrega = entregaRepository.salva(new Entrega(entregaNovoRequest, idPedido));
         log.info("[finaliza] EntregaApplicationService - criaNovaEntrega");
         return new EntregaCriadaResponse(entrega);
