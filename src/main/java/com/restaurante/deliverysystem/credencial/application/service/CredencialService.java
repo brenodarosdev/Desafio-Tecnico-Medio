@@ -6,5 +6,5 @@ import jakarta.validation.Valid;
 import lombok.Value;
 
 public interface CredencialService {
-    void criaNovaCredencial(@Valid CienteRequest clienteNovoRequest);
+    void criaNovaCredencial(CienteRequest clienteNovoRequest);
 }
