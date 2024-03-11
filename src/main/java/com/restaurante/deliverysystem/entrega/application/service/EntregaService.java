@@ -12,4 +12,5 @@ public interface EntregaService {
     void alteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega);
     void alteraStatusParaACaminho(UUID idEntrega);
     void alteraStatusParaEntregue(UUID idEntrega);
+    void deletaEntrega(UUID idEntrega);
 }

@@ -53,6 +53,7 @@ public class EntregaController implements EntregaAPI {
     @Override
     public void deleteDeletaEntrega(UUID idEntrega) {
         log.info("[inicia] EntregaController - deleteDeletaEntrega");
+        entregaService.deletaEntrega(idEntrega);
         log.info("[finaliza] EntregaController - deleteDeletaEntrega");
     }
 }
