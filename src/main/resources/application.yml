@@ -4,10 +4,15 @@ server:
 
 springdoc:
   swagger-ui:
-    path: /swagger
+    path: /public/swagger
 
 spring:
   data:
     mongodb:
       uri: ${MONGO_DB_URI:mongodb+srv://dev:root@desenvolvimento.zlysth9.mongodb.net/desenvolvimento?retryWrites=true&w=majority&appName=Desenvolvimento}
       auto-index-creation: true
+
+restaurante:
+  jwt:
+    expiracao: ${JWT_TEMPO_EXPIRACAO:15}
+    chave: ${JWT_CHAVE:123456}
