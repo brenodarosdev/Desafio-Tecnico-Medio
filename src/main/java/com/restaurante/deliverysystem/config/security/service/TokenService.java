@@ -18,17 +18,17 @@ import java.util.Optional;
 @Service
 @Log4j2
 public class TokenService {
-    @Value("${produdoro.jwt.expiracao}")
+    @Value("${restaurante.jwt.expiracao}")
     private String expiracao;
-    @Value("${produdoro.jwt.chave}")
+    @Value("${restaurante.jwt.chave}")
     private String chave;
 
-    public String gerarToken(Authentication authentication) {
-        return gerarToken((Credencial) authentication.getPrincipal());
+    public String geraToken(Authentication authentication) {
+        return geraToken((Credencial) authentication.getPrincipal());
     }
 
-    public String gerarToken(Credencial credencial) {
-        log.info("[inicio] TokenService - criação de token");
+    public String geraToken(Credencial credencial) {
+        log.info("[inicio] TokenService - geraToken");
         String token = Jwts.builder()
                 .setIssuer("API do Produdoro")
                 .setSubject(credencial.getEmail())
@@ -39,7 +39,7 @@ public class TokenService {
                         .toInstant()))
                 .signWith(SignatureAlgorithm.HS256, chave)
                 .compact();
-        log.info("[finaliza] TokenService - criação de token");
+        log.info("[finaliza] TokenService - geraToken");
 		return token;
     }
 

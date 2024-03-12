@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @RestController
 @Tag(name = "Cliente")
-@RequestMapping("/cliente")
+@RequestMapping("/public/cliente")
 public interface ClienteAPI {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)

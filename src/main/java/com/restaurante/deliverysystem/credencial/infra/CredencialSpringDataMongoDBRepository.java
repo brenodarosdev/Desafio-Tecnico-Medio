@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface CredencialSpringDataMongoDBRepository extends MongoRepository<Credencial, String> {
-    Optional<Credencial> findByIdEmail(String email);
+    Credencial findByEmail(String email);
 }

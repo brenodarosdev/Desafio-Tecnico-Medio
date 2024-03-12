@@ -24,26 +24,25 @@ import java.util.Optional;
 @Log4j2
 @RequiredArgsConstructor
 public class FiltroToken extends OncePerRequestFilter {
-
     private final TokenService tokenService;
     private final CredencialService credencialService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        log.info("[inicio] Filtro - filtrando requisicao");
+        log.info("[inicio] Filtro - filtrando requisição");
         String token = recuperaToken(request);
         autenticaCliente(token);
-        log.info("[finaliza] Filtro - filtrando requisicao");
+        log.info("[finaliza] Filtro - filtrando requisição");
         filterChain.doFilter(request, response);
     }
 
     private void autenticaCliente(String token) {
-        log.info("[inicio] autenticacaoCliente - utilizando token válido para autenticar o email");
+        log.info("[inicio] autenticaCliente - utilizando token válido para autenticar o email");
         Credencial credencial = recuperaEmail(token);
         var authenticationToken = new UsernamePasswordAuthenticationToken(credencial, null, credencial.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-        log.info("[finaliza] autenticacaoCliente - utilizando token válido para autenticar o email");
+        log.info("[finaliza] autenticaCliente - utilizando token válido para autenticar o email");
     }
 
     private Credencial recuperaEmail(String token) {

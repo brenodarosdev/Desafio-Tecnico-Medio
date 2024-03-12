@@ -5,6 +5,7 @@ import com.restaurante.deliverysystem.cliente.application.api.ClienteCriadoRespo
 import com.restaurante.deliverysystem.cliente.application.api.ClienteDetalhadoResponse;
 import com.restaurante.deliverysystem.cliente.application.repository.ClienteRepository;
 import com.restaurante.deliverysystem.cliente.domain.Cliente;
+import com.restaurante.deliverysystem.credencial.application.service.CredencialService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,12 @@ import java.util.UUID;
 @Log4j2
 public class ClienteApplicationService implements ClienteService {
     private final ClienteRepository clienteRepository;
+    private final CredencialService credencialService;
 
     @Override
     public ClienteCriadoResponse cadastraNovoCliente(CienteRequest clienteNovoRequest) {
         log.info("[inicia] ClienteApplicationService - cadastraNovoCliente");
+        credencialService.criaNovaCredencial(clienteNovoRequest);
         Cliente cliente = clienteRepository.salva(new Cliente(clienteNovoRequest));
         log.info("[finaliza] ClienteApplicationService - cadastraNovoCliente");
         return new ClienteCriadoResponse(cliente);

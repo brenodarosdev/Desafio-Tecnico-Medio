@@ -1,7 +1,7 @@
 package com.restaurante.deliverysystem.config.security;
 
 
-import com.restaurante.deliverysystem.config.security.service.AutenticacaoSecurityService;
+import com.restaurante.deliverysystem.config.security.service.AuthenticationSecurityService;
 import com.restaurante.deliverysystem.config.security.service.TokenService;
 import com.restaurante.deliverysystem.credencial.application.service.CredencialService;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig {
     private final TokenService tokenService;
     private final CredencialService credencialService;
-    private final AutenticacaoSecurityService autenticacaoSecurityService;
+    private final AuthenticationSecurityService authenticationSecurityService;
     private final AuthenticationConfiguration configuration;
 
     @Bean
@@ -38,9 +37,8 @@ public class SecurityConfig {
         return configuration.getAuthenticationManager();
     }
 
-    @Bean
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(autenticacaoSecurityService)
+    void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(authenticationSecurityService)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
 
@@ -52,7 +50,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((authz) -> authz
+                .authorizeHttpRequests((auth) -> auth
                     .requestMatchers("/public/**").permitAll()
                     .anyRequest().authenticated())
                     .csrf(AbstractHttpConfigurer::disable)
