@@ -30,7 +30,7 @@ public class FiltroToken extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        log.info("[inicio] Filtro - filtrando requisição");
+        log.info("[inicia] Filtro - filtrando requisição");
         String token = recuperaToken(request);
         autenticaCliente(token);
         log.info("[finaliza] Filtro - filtrando requisição");
@@ -38,7 +38,7 @@ public class FiltroToken extends OncePerRequestFilter {
     }
 
     private void autenticaCliente(String token) {
-        log.info("[inicio] autenticaCliente - utilizando token válido para autenticar o email");
+        log.info("[inicia] autenticaCliente - utilizando token válido para autenticar o email");
         Credencial credencial = recuperaEmail(token);
         var authenticationToken = new UsernamePasswordAuthenticationToken(credencial, null, credencial.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
@@ -52,7 +52,7 @@ public class FiltroToken extends OncePerRequestFilter {
     }
 
     private String recuperaToken(HttpServletRequest requestOpt) {
-        log.info("[inicio] recuperaToken - extraindo o token dos cabecalhos da requisicao");
+        log.info("[inicia] recuperaToken - extraindo o token dos cabecalhos da requisicao");
         var AuthorizationHeaderValueOpt = Optional.ofNullable(recuperaValorAuthorizationHeader(requestOpt));
         String AuthorizationHeaderValue = AuthorizationHeaderValueOpt.filter(new ValidaConteudoAuthorizationHeader())
                 .orElseThrow(() -> new RuntimeException("Token inválido!"));

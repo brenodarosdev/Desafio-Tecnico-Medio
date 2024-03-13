@@ -1,6 +1,7 @@
 package com.restaurante.deliverysystem.cliente.application.api;
 
 import com.restaurante.deliverysystem.cliente.application.service.ClienteService;
+import com.restaurante.deliverysystem.config.security.service.TokenService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Log4j2
 public class ClienteController implements ClienteAPI {
     private final ClienteService clienteService;
+    private final TokenService tokenService;
 
     @Override
     public ClienteCriadoResponse postCadastraNovoCliente(CienteRequest clienteNovoRequest) {
@@ -23,9 +25,12 @@ public class ClienteController implements ClienteAPI {
     }
 
     @Override
-    public ClienteDetalhadoResponse getBuscaClientePorId(UUID idCliente) {
+    public ClienteDetalhadoResponse getBuscaClientePorId(String token, UUID idCliente) {
         log.info("[inicia] ClienteController - getBuscaClientePorId");
-        ClienteDetalhadoResponse clienteDetalhadoResponse = clienteService.buscaClientePorId(idCliente);
+        // TODO Implementar exception
+        String emailCliente = tokenService.getEmailByBearerToken(token)
+                .orElseThrow(() -> new RuntimeException("Token inválido!"));
+        ClienteDetalhadoResponse clienteDetalhadoResponse = clienteService.buscaClientePorId(idCliente, emailCliente);
         log.info("[finaliza] ClienteController - getBuscaClientePorId");
         return clienteDetalhadoResponse;
     }

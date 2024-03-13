@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface ClienteService {
     ClienteCriadoResponse cadastraNovoCliente(CienteRequest clienteNovoRequest);
-    ClienteDetalhadoResponse buscaClientePorId(UUID idCliente);
+    ClienteDetalhadoResponse buscaClientePorId(UUID idCliente, String emailCliente);
     void alteraCliente(CienteRequest alteraClienteRequest, UUID idCliente);
     void deletaCliente(UUID idCliente);
 }

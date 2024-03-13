@@ -38,4 +38,13 @@ public class ClienteInfraRepository implements ClienteRepository {
         clienteSpringDataMongoDBRepository.deleteByIdCliente(idCliente);
         log.info("[finaliza] ClienteInfraRepository - deletaClientePorId");
     }
+
+    @Override
+    public Cliente clientePorEmail(String emailCliente) {
+        log.info("[inicia] ClienteInfraRepository - clientePorEmail");
+        Cliente cliente = clienteSpringDataMongoDBRepository.findByEmail(emailCliente)
+                .orElseThrow(() -> new RuntimeException("Usuario não encontrado!"));
+        log.info("[finaliza] ClienteInfraRepository - clientePorEmail");
+        return cliente;
+    }
 }

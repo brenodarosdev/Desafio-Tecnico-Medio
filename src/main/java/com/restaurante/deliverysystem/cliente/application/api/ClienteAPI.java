@@ -20,7 +20,8 @@ public interface ClienteAPI {
     @GetMapping("/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Busca Cliente por ID")
-    ClienteDetalhadoResponse getBuscaClientePorId(@PathVariable UUID idCliente);
+    ClienteDetalhadoResponse getBuscaClientePorId(@RequestHeader(name = "Authorization") String token,
+                                                  @PathVariable UUID idCliente);
 
     @PatchMapping("/editaCliente/{idCliente}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

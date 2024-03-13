@@ -28,9 +28,9 @@ public class TokenService {
     }
 
     public String geraToken(Credencial credencial) {
-        log.info("[inicio] TokenService - geraToken");
+        log.info("[inicia] TokenService - geraToken");
         String token = Jwts.builder()
-                .setIssuer("API do Produdoro")
+                .setIssuer("API de Restaurante")
                 .setSubject(credencial.getEmail())
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(LocalDateTime.now()
@@ -45,7 +45,7 @@ public class TokenService {
 
     public Optional<String> getEmail(String token) {
         try {
-            log.info("[inicio] TokenService - extração do ID do Token");
+            log.info("[inicia] TokenService - extração do ID do Token");
             var claims = Jwts.parser().setSigningKey(chave).parseClaimsJws(token).getBody();
             log.info("[finaliza] TokenService - extração do ID do Token");
             return Optional.of(claims.getSubject());
@@ -59,7 +59,7 @@ public class TokenService {
     }
 
     public Optional<String> getEmailByBearerToken(String bearerToken) {
-        log.info("[inicio] TokenService - getEmailByBearerToken");
+        log.info("[inicia] TokenService - getEmailByBearerToken");
         String token = bearerToken.substring(7);
         log.info(token);
         log.info("[finaliza] TokenService - getEmailByBearerToken");
