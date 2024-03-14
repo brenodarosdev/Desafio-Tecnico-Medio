@@ -1,5 +1,6 @@
 package com.restaurante.deliverysystem.pedido.application.api;
 
+import com.restaurante.deliverysystem.config.security.service.TokenService;
 import com.restaurante.deliverysystem.pedido.application.service.PedidoService;
 import com.restaurante.deliverysystem.pedido.domain.Pedido;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +15,14 @@ import java.util.UUID;
 @Log4j2
 public class PedidoController implements PedidoAPI {
     private final PedidoService pedidoService;
+    private final TokenService tokenService;
 
     @Override
-    public PedidoCriadoResponse postCriaNovoPedido(PedidoRequest pedidoRequest, UUID idCliente) {
+    public PedidoCriadoResponse postCriaNovoPedido(String token, PedidoRequest pedidoRequest, UUID idCliente) {
         log.info("[inicia] PedidoController - postCriaNovoPedido");
-        PedidoCriadoResponse pedidoCriadoResponse = pedidoService.criaNovoPedido(pedidoRequest, idCliente);
+        String emailCliente = tokenService.getEmailByBearerToken(token)
+                .orElseThrow(() -> new RuntimeException("Token inválido!"));
+        PedidoCriadoResponse pedidoCriadoResponse = pedidoService.criaNovoPedido(pedidoRequest, idCliente, emailCliente);
         log.info("[finaliza] PedidoController - postCriaNovoPedido");
         return pedidoCriadoResponse;
     }

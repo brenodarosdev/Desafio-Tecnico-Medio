@@ -11,12 +11,13 @@ import java.util.UUID;
 
 @RestController
 @Tag(name = "Pedido")
-@RequestMapping("/pedido")
+@RequestMapping("/public/pedido")
 public interface PedidoAPI {
     @PostMapping("/novoPedido/{idCliente}")
     @ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Cria novo Pedido")
-    PedidoCriadoResponse postCriaNovoPedido(@Valid @RequestBody PedidoRequest pedidoRequest, @PathVariable UUID idCliente);
+    PedidoCriadoResponse postCriaNovoPedido(@RequestHeader(name = "Authorization") String token,
+                                            @Valid @RequestBody PedidoRequest pedidoRequest, @PathVariable UUID idCliente);
 
     @GetMapping("/{idPedido}")
     @ResponseStatus(code = HttpStatus.OK)

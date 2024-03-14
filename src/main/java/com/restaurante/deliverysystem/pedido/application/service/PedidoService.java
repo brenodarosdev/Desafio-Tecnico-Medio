@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface PedidoService {
-    PedidoCriadoResponse criaNovoPedido(PedidoRequest pedidoRequest, UUID idCliente);
+    PedidoCriadoResponse criaNovoPedido(PedidoRequest pedidoRequest, UUID idCliente, String emailCliente);
     PedidoDetalhadoResponse buscaPedidoPorId(UUID idPedido);
     List<PedidoDetalhadoResponse> listaTodosPedidosPorIdCliente(UUID idCliente);
     void alteraPedido(PedidoRequest alteraPedidoRequest, UUID idPedido);

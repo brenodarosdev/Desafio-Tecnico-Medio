@@ -1,6 +1,8 @@
 package com.restaurante.deliverysystem.pedido.application.service;
 
 import com.restaurante.deliverysystem.cliente.application.repository.ClienteRepository;
+import com.restaurante.deliverysystem.cliente.domain.Cliente;
+import com.restaurante.deliverysystem.credencial.application.service.CredencialService;
 import com.restaurante.deliverysystem.pedido.application.api.PedidoCriadoResponse;
 import com.restaurante.deliverysystem.pedido.application.api.PedidoDetalhadoResponse;
 import com.restaurante.deliverysystem.pedido.application.api.PedidoRequest;
@@ -20,11 +22,14 @@ import java.util.UUID;
 public class PedidoApplicationService implements PedidoService {
     private final PedidoRepository pedidoRepository;
     private final ClienteRepository clienteRepository;
+    private final CredencialService credencialService;
 
     @Override
-    public PedidoCriadoResponse criaNovoPedido(PedidoRequest pedidoRequest, UUID idCliente) {
+    public PedidoCriadoResponse criaNovoPedido(PedidoRequest pedidoRequest, UUID idCliente, String emailCliente) {
         log.info("[inicia] PedidoApplicationService - criaNovoPedido");
+        Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
+        clientePorEmail.validaCliente(idCliente);
         Pedido pedido = pedidoRepository.salva(new Pedido(pedidoRequest, idCliente));
         log.info("[finaliza] PedidoApplicationService - criaNovoPedido");
         return new PedidoCriadoResponse(pedido);
