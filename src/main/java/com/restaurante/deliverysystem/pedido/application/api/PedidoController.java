@@ -57,9 +57,11 @@ public class PedidoController implements PedidoAPI {
     }
 
     @Override
-    public void deleteDeletaPedido(UUID idPedido) {
+    public void deleteDeletaPedido(String token, UUID idPedido) {
         log.info("[inicia] PedidoController - deleteDeletaPedido");
-        pedidoService.deletaPedido(idPedido);
+        String emailCliente = tokenService.getEmailByBearerToken(token)
+                .orElseThrow(() -> new RuntimeException("Token inválido!"));
+        pedidoService.deletaPedido(idPedido, emailCliente);
         log.info("[finaliza] PedidoController - deleteDeletaPedido");
     }
 }

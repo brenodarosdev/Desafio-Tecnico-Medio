@@ -12,5 +12,5 @@ public interface PedidoService {
     PedidoDetalhadoResponse buscaPedidoPorId(UUID idPedido, String emailCliente);
     List<PedidoDetalhadoResponse> listaTodosPedidosPorIdCliente(UUID idCliente, String emailCliente);
     void alteraPedido(PedidoRequest alteraPedidoRequest, UUID idPedido, String emailCliente);
-    void deletaPedido(UUID idPedido);
+    void deletaPedido(UUID idPedido, String emailCliente);
 }

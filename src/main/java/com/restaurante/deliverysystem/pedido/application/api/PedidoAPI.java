@@ -40,5 +40,5 @@ public interface PedidoAPI {
     @DeleteMapping("/deletaPedido/{idPedido}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @Operation(summary = "Deleta Pedido")
-    void deleteDeletaPedido(@PathVariable UUID idPedido);
+    void deleteDeletaPedido(@RequestHeader(name = "Authorization") String token, @PathVariable UUID idPedido);
 }
