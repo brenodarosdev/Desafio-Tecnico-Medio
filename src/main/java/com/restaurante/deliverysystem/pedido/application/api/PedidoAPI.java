@@ -22,7 +22,8 @@ public interface PedidoAPI {
     @GetMapping("/{idPedido}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Busca Pedido por ID")
-    PedidoDetalhadoResponse getBuscaPedidoPorId(@PathVariable UUID idPedido);
+    PedidoDetalhadoResponse getBuscaPedidoPorId(@RequestHeader(name = "Authorization") String token,
+                                                @PathVariable UUID idPedido);
 
     @GetMapping("/pedidos/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)

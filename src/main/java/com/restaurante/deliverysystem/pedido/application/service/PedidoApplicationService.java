@@ -36,9 +36,13 @@ public class PedidoApplicationService implements PedidoService {
     }
 
     @Override
-    public PedidoDetalhadoResponse buscaPedidoPorId(UUID idPedido) {
+    public PedidoDetalhadoResponse buscaPedidoPorId(UUID idPedido, String emailCliente) {
         log.info("[inicia] PedidoApplicationService - buscaPedidoPorId");
         Pedido pedido = pedidoRepository.pedidoPorId(idPedido);
+        UUID idCliente = pedido.getIdCliente();
+        Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
+        clienteRepository.clientePorId(idCliente);
+        clientePorEmail.validaCliente(idCliente);
         log.info("[finaliza] PedidoApplicationService - buscaPedidoPorId");
         return new PedidoDetalhadoResponse(pedido);
     }
