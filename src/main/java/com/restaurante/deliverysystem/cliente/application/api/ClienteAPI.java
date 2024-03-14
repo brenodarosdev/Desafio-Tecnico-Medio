@@ -32,5 +32,6 @@ public interface ClienteAPI {
     @DeleteMapping("/deletaCliente/{idCliente}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @Operation(summary = "Deleta Cliente")
-    void deleteDeletaCliente(@PathVariable UUID idCliente);
+    void deleteDeletaCliente(@RequestHeader(name = "Authorization") String token,
+                             @PathVariable UUID idCliente);
 }

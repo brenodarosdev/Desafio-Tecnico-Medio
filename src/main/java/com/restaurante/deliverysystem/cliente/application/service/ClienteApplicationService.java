@@ -52,9 +52,11 @@ public class ClienteApplicationService implements ClienteService {
     }
 
     @Override
-    public void deletaCliente(UUID idCliente) {
+    public void deletaCliente(UUID idCliente, String emailCliente) {
         log.info("[inicia] ClienteApplicationService - deletaCliente");
+        Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
+        clientePorEmail.validaCliente(idCliente);
         clienteRepository.deletaClientePorId(idCliente);
         log.info("[finaliza] ClienteApplicationService - deletaCliente");
     }

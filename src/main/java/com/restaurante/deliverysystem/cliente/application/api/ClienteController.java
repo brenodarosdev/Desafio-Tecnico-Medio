@@ -45,9 +45,11 @@ public class ClienteController implements ClienteAPI {
     }
 
     @Override
-    public void deleteDeletaCliente(UUID idCliente) {
+    public void deleteDeletaCliente(String token, UUID idCliente) {
         log.info("[inicia] ClienteController - deleteDeletaCliente");
-        clienteService.deletaCliente( idCliente);
+        String emailCliente = tokenService.getEmailByBearerToken(token)
+                .orElseThrow(() -> new RuntimeException("Token inválido!"));
+        clienteService.deletaCliente(idCliente, emailCliente);
         log.info("[finaliza] ClienteController - deleteDeletaCliente");
     }
 }
