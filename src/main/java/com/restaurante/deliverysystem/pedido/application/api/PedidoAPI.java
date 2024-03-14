@@ -28,7 +28,8 @@ public interface PedidoAPI {
     @GetMapping("/pedidos/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Lista Pedidos por ID do Cliente")
-    List<PedidoDetalhadoResponse> getListaTodosPedidosPorIdCliente(@PathVariable UUID idCliente);
+    List<PedidoDetalhadoResponse> getListaTodosPedidosPorIdCliente(@RequestHeader(name = "Authorization") String token,
+                                                                   @PathVariable UUID idCliente);
 
     @PatchMapping("/editaPedido/{idPedido}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

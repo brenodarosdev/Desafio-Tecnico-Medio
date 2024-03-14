@@ -48,8 +48,11 @@ public class PedidoApplicationService implements PedidoService {
     }
 
     @Override
-    public List<PedidoDetalhadoResponse> listaTodosPedidosPorIdCliente(UUID idCliente) {
+    public List<PedidoDetalhadoResponse> listaTodosPedidosPorIdCliente(UUID idCliente, String emailCliente) {
         log.info("[inicia] PedidoApplicationService - listaTodosPedidosPorIdCliente");
+        Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
+        clienteRepository.clientePorId(idCliente);
+        clientePorEmail.validaCliente(idCliente);
         List<Pedido> pedidos = pedidoRepository.pedidosPorIdCliente(idCliente);
         log.info("[finaliza] PedidoApplicationService - listaTodosPedidosPorIdCliente");
         return PedidoDetalhadoResponse.converte(pedidos);

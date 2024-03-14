@@ -38,9 +38,11 @@ public class PedidoController implements PedidoAPI {
     }
 
     @Override
-    public List<PedidoDetalhadoResponse> getListaTodosPedidosPorIdCliente(UUID idCliente) {
+    public List<PedidoDetalhadoResponse> getListaTodosPedidosPorIdCliente(String token, UUID idCliente) {
         log.info("[inicia] PedidoController - getListaTodosPedidosPorIdCliente");
-        List<PedidoDetalhadoResponse> pedidosDoCliente = pedidoService.listaTodosPedidosPorIdCliente(idCliente);
+        String emailCliente = tokenService.getEmailByBearerToken(token)
+                .orElseThrow(() -> new RuntimeException("Token inválido!"));
+        List<PedidoDetalhadoResponse> pedidosDoCliente = pedidoService.listaTodosPedidosPorIdCliente(idCliente, emailCliente);
         log.info("[finaliza] PedidoController - getListaTodosPedidosPorIdCliente");
         return pedidosDoCliente;
     }
