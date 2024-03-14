@@ -36,9 +36,11 @@ public class ClienteController implements ClienteAPI {
     }
 
     @Override
-    public void patchAlteraCliente(CienteRequest alteraClienteRequest, UUID idCliente) {
+    public void patchAlteraCliente(String token, CienteRequest alteraClienteRequest, UUID idCliente) {
         log.info("[inicia] ClienteController - patchAlteraCliente");
-        clienteService.alteraCliente(alteraClienteRequest, idCliente);
+        String emailCliente = tokenService.getEmailByBearerToken(token)
+                .orElseThrow(() -> new RuntimeException("Token inválido!"));
+        clienteService.alteraCliente(alteraClienteRequest, idCliente, emailCliente);
         log.info("[finaliza] ClienteController - patchAlteraCliente");
     }
 

@@ -43,7 +43,7 @@ public class ClienteInfraRepository implements ClienteRepository {
     public Cliente clientePorEmail(String emailCliente) {
         log.info("[inicia] ClienteInfraRepository - clientePorEmail");
         Cliente cliente = clienteSpringDataMongoDBRepository.findByEmail(emailCliente)
-                .orElseThrow(() -> new RuntimeException("Usuario não encontrado!"));
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado!"));
         log.info("[finaliza] ClienteInfraRepository - clientePorEmail");
         return cliente;
     }

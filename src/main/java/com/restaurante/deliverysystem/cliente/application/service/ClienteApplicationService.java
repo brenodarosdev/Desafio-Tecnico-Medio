@@ -40,11 +40,14 @@ public class ClienteApplicationService implements ClienteService {
     }
 
     @Override
-    public void alteraCliente(CienteRequest alteraClienteRequest, UUID idCliente) {
+    public void alteraCliente(CienteRequest alteraClienteRequest, UUID idCliente, String emailCliente) {
         log.info("[inicia] ClienteApplicationService - alteraCliente");
-        Cliente cliente = clienteRepository.clientePorId(idCliente);
-        cliente.alteraCliente(alteraClienteRequest);
-        clienteRepository.salva(cliente);
+        Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
+        clienteRepository.clientePorId(idCliente);
+        clientePorEmail.validaCliente(idCliente);
+        clientePorEmail.alteraCliente(alteraClienteRequest);
+        credencialService.criaNovaCredencial(alteraClienteRequest);
+        clienteRepository.salva(clientePorEmail);
         log.info("[finaliza] ClienteApplicationService - alteraCliente");
     }
 
