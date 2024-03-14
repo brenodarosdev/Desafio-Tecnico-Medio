@@ -1,5 +1,6 @@
 package com.restaurante.deliverysystem.entrega.application.api;
 
+import com.restaurante.deliverysystem.config.security.service.TokenService;
 import com.restaurante.deliverysystem.entrega.application.service.EntregaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -12,11 +13,14 @@ import java.util.UUID;
 @Log4j2
 public class EntregaController implements EntregaAPI {
     private final EntregaService entregaService;
+    private final TokenService tokenService;
 
     @Override
-    public EntregaCriadaResponse postCriaNovaEntrega(EntregaRequest entregaNovoRequest, UUID idPedido) {
+    public EntregaCriadaResponse postCriaNovaEntrega(String token, EntregaRequest entregaNovoRequest, UUID idPedido) {
         log.info("[inicia] EntregaController - postCriaNovaEntrega");
-        EntregaCriadaResponse entregaCriadaResponse = entregaService.criaNovaEntrega(entregaNovoRequest, idPedido);
+        String emailCliente = tokenService.getEmailByBearerToken(token)
+                .orElseThrow(() -> new RuntimeException("Token inválido!"));
+        EntregaCriadaResponse entregaCriadaResponse = entregaService.criaNovaEntrega(entregaNovoRequest, idPedido, emailCliente);
         log.info("[finaliza] EntregaController - postCriaNovaEntrega");
         return entregaCriadaResponse;
     }

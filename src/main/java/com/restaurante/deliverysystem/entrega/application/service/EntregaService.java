@@ -7,7 +7,7 @@ import com.restaurante.deliverysystem.entrega.application.api.EntregaRequest;
 import java.util.UUID;
 
 public interface EntregaService {
-    EntregaCriadaResponse criaNovaEntrega(EntregaRequest entregaNovoRequest, UUID idPedido);
+    EntregaCriadaResponse criaNovaEntrega(EntregaRequest entregaNovoRequest, UUID idPedido, String emailCliente);
     EntregaDetalhadaResponse buscaEntregaPorId(UUID idEntrega);
     void alteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega);
     void alteraStatusParaACaminho(UUID idEntrega);

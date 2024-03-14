@@ -22,7 +22,6 @@ import java.util.UUID;
 public class PedidoApplicationService implements PedidoService {
     private final PedidoRepository pedidoRepository;
     private final ClienteRepository clienteRepository;
-    private final CredencialService credencialService;
 
     @Override
     public PedidoCriadoResponse criaNovoPedido(PedidoRequest pedidoRequest, UUID idCliente, String emailCliente) {

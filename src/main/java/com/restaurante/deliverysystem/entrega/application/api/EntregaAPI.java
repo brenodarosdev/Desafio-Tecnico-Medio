@@ -11,12 +11,13 @@ import java.util.UUID;
 
 @RestController
 @Tag(name = "Entrega")
-@RequestMapping("/entrega")
+@RequestMapping("/public/entrega")
 public interface EntregaAPI {
     @PostMapping("/novaEntrega/{idPedido}")
     @ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Cria nova Entrega")
-    EntregaCriadaResponse postCriaNovaEntrega(@Valid @RequestBody EntregaRequest entregaNovoRequest,
+    EntregaCriadaResponse postCriaNovaEntrega(@RequestHeader(name = "Authorization") String token,
+                                              @Valid @RequestBody EntregaRequest entregaNovoRequest,
                                               @PathVariable UUID idPedido);
 
     @GetMapping("/{idEntrega}")
