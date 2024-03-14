@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface EntregaService {
     EntregaCriadaResponse criaNovaEntrega(EntregaRequest entregaNovoRequest, UUID idPedido, String emailCliente);
-    EntregaDetalhadaResponse buscaEntregaPorId(UUID idEntrega);
+    EntregaDetalhadaResponse buscaEntregaPorId(UUID idEntrega, String emailCliente);
     void alteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega);
     void alteraStatusParaACaminho(UUID idEntrega);
     void alteraStatusParaEntregue(UUID idEntrega);

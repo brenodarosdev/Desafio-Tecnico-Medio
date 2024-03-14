@@ -23,7 +23,8 @@ public interface EntregaAPI {
     @GetMapping("/{idEntrega}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Busca Entrega por ID")
-    EntregaDetalhadaResponse getBuscaEntregaPorId(@PathVariable UUID idEntrega);
+    EntregaDetalhadaResponse getBuscaEntregaPorId(@RequestHeader(name = "Authorization") String token,
+                                                  @PathVariable UUID idEntrega);
 
     @PatchMapping("/editaEntrega/{idEntrega}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

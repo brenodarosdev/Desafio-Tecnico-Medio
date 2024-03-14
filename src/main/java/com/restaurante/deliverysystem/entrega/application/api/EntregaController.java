@@ -26,9 +26,11 @@ public class EntregaController implements EntregaAPI {
     }
 
     @Override
-    public EntregaDetalhadaResponse getBuscaEntregaPorId(UUID idEntrega) {
+    public EntregaDetalhadaResponse getBuscaEntregaPorId(String token, UUID idEntrega) {
         log.info("[inicia] EntregaController - getBuscaEntregaPorId");
-        EntregaDetalhadaResponse entregaDetalhadaResponse = entregaService.buscaEntregaPorId(idEntrega);
+        String emailCliente = tokenService.getEmailByBearerToken(token)
+                .orElseThrow(() -> new RuntimeException("Token inválido!"));
+        EntregaDetalhadaResponse entregaDetalhadaResponse = entregaService.buscaEntregaPorId(idEntrega, emailCliente);
         log.info("[finaliza] EntregaController - getBuscaEntregaPorId");
         return entregaDetalhadaResponse;
     }
