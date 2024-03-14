@@ -38,20 +38,25 @@ public class EntregaApplicationService implements EntregaService {
     @Override
     public EntregaDetalhadaResponse buscaEntregaPorId(UUID idEntrega, String emailCliente) {
         log.info("[inicia] EntregaApplicationService - buscaEntregaPorId");
-        UUID idPedido = entregaRepository.entregaPorId(idEntrega).getIdPedido();
+        Entrega entrega = entregaRepository.entregaPorId(idEntrega);
+        UUID idPedido = entrega.getIdPedido();
         UUID idCliente = pedidoRepository.pedidoPorId(idPedido).getIdCliente();
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
-        Entrega entrega = entregaRepository.entregaPorId(idEntrega);
         log.info("[finaliza] EntregaApplicationService - buscaEntregaPorId");
         return new EntregaDetalhadaResponse(entrega);
     }
 
     @Override
-    public void alteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega) {
+    public void alteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega, String emailCliente) {
         log.info("[inicia] EntregaApplicationService - alteraEntrega");
         Entrega entrega = entregaRepository.entregaPorId(idEntrega);
+        UUID idPedido = entrega.getIdPedido();
+        UUID idCliente = pedidoRepository.pedidoPorId(idPedido).getIdCliente();
+        Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
+        clienteRepository.clientePorId(idCliente);
+        clientePorEmail.validaCliente(idCliente);
         entrega.alteraEntrega(entregaAlteraRequest);
         entregaRepository.salva(entrega);
         log.info("[finaliza] EntregaApplicationService - alteraEntrega");
