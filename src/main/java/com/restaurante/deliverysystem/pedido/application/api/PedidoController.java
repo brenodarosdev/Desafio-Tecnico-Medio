@@ -48,9 +48,11 @@ public class PedidoController implements PedidoAPI {
     }
 
     @Override
-    public void patchAlteraPedido(PedidoRequest alteraPedidoRequest, UUID idPedido) {
+    public void patchAlteraPedido(String token, PedidoRequest alteraPedidoRequest, UUID idPedido) {
         log.info("[inicia] PedidoController - patchAlteraPedido");
-        pedidoService.alteraPedido(alteraPedidoRequest, idPedido);
+        String emailCliente = tokenService.getEmailByBearerToken(token)
+                .orElseThrow(() -> new RuntimeException("Token inválido!"));
+        pedidoService.alteraPedido(alteraPedidoRequest, idPedido, emailCliente);
         log.info("[finaliza PedidoController - patchAlteraPedido");
     }
 
