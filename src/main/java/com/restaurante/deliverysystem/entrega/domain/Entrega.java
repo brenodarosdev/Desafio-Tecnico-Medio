@@ -21,7 +21,7 @@ import java.util.UUID;
 public class Entrega {
     @Id
     private UUID idEntrega;
-    @Indexed
+    @Indexed(unique = true)
     private UUID idPedido;
     @NotNull
     private StatusEntrega status;
