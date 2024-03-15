@@ -8,6 +8,7 @@ import com.restaurante.deliverysystem.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.Store;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
@@ -22,9 +23,13 @@ public class EntregaInfraRepository implements EntregaRepository {
     @Override
     public Entrega salva(Entrega entrega) {
         log.info("[inicia] EntregaInfraRepository - salva");
+        try {
         Entrega entregaSalva = entregaSpringDataMongoDBRepository.save(entrega);
         log.info("[finaliza] EntregaInfraRepository - salva");
         return entregaSalva;
+        } catch (DataIntegrityViolationException e) {
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Já existe uma Entrega cadastrada para este Pedido!");
+        }
     }
 
     @Override
