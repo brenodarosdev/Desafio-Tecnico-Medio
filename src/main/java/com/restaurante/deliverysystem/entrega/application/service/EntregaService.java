@@ -12,5 +12,5 @@ public interface EntregaService {
     void alteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega, String emailCliente);
     void alteraStatusParaACaminho(UUID idEntrega, String emailCliente);
     void alteraStatusParaEntregue(UUID idEntrega, String  emailCliente);
-    void deletaEntrega(UUID idEntrega);
+    void deletaEntrega(UUID idEntrega, String emailCliente);
 }

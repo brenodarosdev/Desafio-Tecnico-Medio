@@ -63,9 +63,11 @@ public class EntregaController implements EntregaAPI {
     }
 
     @Override
-    public void deleteDeletaEntrega(UUID idEntrega) {
+    public void deleteDeletaEntrega(String token, UUID idEntrega) {
         log.info("[inicia] EntregaController - deleteDeletaEntrega");
-        entregaService.deletaEntrega(idEntrega);
+        String emailCliente = tokenService.getEmailByBearerToken(token)
+                .orElseThrow(() -> new RuntimeException("Token inválido!"));
+        entregaService.deletaEntrega(idEntrega, emailCliente);
         log.info("[finaliza] EntregaController - deleteDeletaEntrega");
     }
 }

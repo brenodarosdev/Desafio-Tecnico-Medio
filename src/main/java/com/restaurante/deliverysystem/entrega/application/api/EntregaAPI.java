@@ -45,5 +45,5 @@ public interface EntregaAPI {
     @DeleteMapping("/deletaEntrega/{idEntrega}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @Operation(summary = "Deleta Entrega")
-    void deleteDeletaEntrega(@PathVariable UUID idEntrega);
+    void deleteDeletaEntrega(@RequestHeader(name = "Authorization") String token, @PathVariable UUID idEntrega);
 }
