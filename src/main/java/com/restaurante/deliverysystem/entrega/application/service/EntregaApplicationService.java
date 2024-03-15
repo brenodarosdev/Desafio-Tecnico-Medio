@@ -77,9 +77,14 @@ public class EntregaApplicationService implements EntregaService {
     }
 
     @Override
-    public void alteraStatusParaEntregue(UUID idEntrega) {
+    public void alteraStatusParaEntregue(UUID idEntrega, String  emailCliente) {
         log.info("[inicia] EntregaApplicationService - alteraStatusParaEntregue");
         Entrega entrega = entregaRepository.entregaPorId(idEntrega);
+        UUID idPedido = entrega.getIdPedido();
+        UUID idCliente = pedidoRepository.pedidoPorId(idPedido).getIdCliente();
+        Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
+        clienteRepository.clientePorId(idCliente);
+        clientePorEmail.validaCliente(idCliente);
         entrega.alteraStatusParaEntregue();
         entregaRepository.salva(entrega);
         log.info("[finaliza] EntregaApplicationService - alteraStatusParaEntregue");

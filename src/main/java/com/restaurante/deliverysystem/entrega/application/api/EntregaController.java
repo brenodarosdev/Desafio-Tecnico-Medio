@@ -54,9 +54,11 @@ public class EntregaController implements EntregaAPI {
     }
 
     @Override
-    public void patchAlteraStatusParaEntregue(UUID idEntrega) {
+    public void patchAlteraStatusParaEntregue(String token, UUID idEntrega) {
         log.info("[inicia] EntregaController - patchAlteraStatusParaEntregue");
-        entregaService.alteraStatusParaEntregue(idEntrega);
+        String emailCliente = tokenService.getEmailByBearerToken(token)
+                .orElseThrow(() -> new RuntimeException("Token inválido!"));
+        entregaService.alteraStatusParaEntregue(idEntrega, emailCliente);
         log.info("[finaliza] EntregaController - patchAlteraStatusParaEntregue");
     }
 

@@ -40,7 +40,7 @@ public interface EntregaAPI {
     @PatchMapping("/entregue/{idEntrega}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @Operation(summary = "Muda status para ENTREGUE")
-    void patchAlteraStatusParaEntregue(@PathVariable UUID idEntrega);
+    void patchAlteraStatusParaEntregue(@RequestHeader(name = "Authorization") String token, @PathVariable UUID idEntrega);
 
     @DeleteMapping("/deletaEntrega/{idEntrega}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
