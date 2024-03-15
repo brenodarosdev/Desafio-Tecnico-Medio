@@ -4,9 +4,11 @@ import com.restaurante.deliverysystem.entrega.application.api.EntregaCriadaRespo
 import com.restaurante.deliverysystem.entrega.application.api.EntregaRequest;
 import com.restaurante.deliverysystem.entrega.application.repository.EntregaRepository;
 import com.restaurante.deliverysystem.entrega.domain.Entrega;
+import com.restaurante.deliverysystem.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.Store;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
@@ -28,9 +30,8 @@ public class EntregaInfraRepository implements EntregaRepository {
     @Override
     public Entrega entregaPorId(UUID idEntrega) {
         log.info("[inicia] EntregaInfraRepository - entregaPorId");
-        // TODO Implementar tratamento exception
         Entrega entrega = entregaSpringDataMongoDBRepository.findByIdEntrega(idEntrega)
-                .orElseThrow(() -> new RuntimeException("Entrega não encontrada!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,"Entrega não encontrada!"));
         log.info("[finaliza] EntregaInfraRepository - entregaPorId");
         return entrega;
     }

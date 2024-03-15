@@ -5,8 +5,10 @@ import com.restaurante.deliverysystem.config.security.domain.ValidaConteudoAutho
 import com.restaurante.deliverysystem.config.security.service.TokenService;
 import com.restaurante.deliverysystem.credencial.application.service.CredencialService;
 import com.restaurante.deliverysystem.credencial.domain.Credencial;
+import com.restaurante.deliverysystem.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -47,7 +49,7 @@ public class FiltroToken extends OncePerRequestFilter {
 
     private Credencial recuperaEmail(String token) {
         var email = tokenService.getEmail(token)
-                .orElseThrow(()-> new RuntimeException("O Token enviado está inválido. Tente novamente."));
+                .orElseThrow(()-> APIException.build(HttpStatus.FORBIDDEN, "O Token enviado está inválido. Tente novamente!"));
         return credencialService.buscaCredencialPorEmail(email);
     }
 
@@ -55,14 +57,14 @@ public class FiltroToken extends OncePerRequestFilter {
         log.info("[inicia] recuperaToken - extraindo o token dos cabecalhos da requisicao");
         var AuthorizationHeaderValueOpt = Optional.ofNullable(recuperaValorAuthorizationHeader(requestOpt));
         String AuthorizationHeaderValue = AuthorizationHeaderValueOpt.filter(new ValidaConteudoAuthorizationHeader())
-                .orElseThrow(() -> new RuntimeException("Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         log.info("[finaliza] recuperaToken - extraindo o token dos cabecalhos da requisicao");
         return AuthorizationHeaderValue.substring(7, AuthorizationHeaderValue.length());
     }
 
     private String recuperaValorAuthorizationHeader(HttpServletRequest request) {
         return Optional.ofNullable(request.getHeader("Authorization"))
-                .orElseThrow(() -> new RuntimeException("Token não está presente na requisição!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token não está presente na requisição!"));
     }
 
     @Override

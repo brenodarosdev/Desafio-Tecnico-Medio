@@ -1,6 +1,7 @@
 package com.restaurante.deliverysystem.cliente.domain;
 
 import com.restaurante.deliverysystem.cliente.application.api.CienteRequest;
+import com.restaurante.deliverysystem.handler.APIException;
 import jakarta.validation.constraints.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.http.HttpStatus;
 
 import java.util.UUID;
 
@@ -42,7 +44,7 @@ public class Cliente {
 
     public void validaCliente(UUID idCliente) {
         if(!this.idCliente.equals(idCliente)) {
-            throw new RuntimeException("Credencial de autenticação não é válida!");
+            throw APIException.build(HttpStatus.UNAUTHORIZED, "Credencial de autenticação não é válida!");
         }
     }
 }
