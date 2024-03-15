@@ -20,13 +20,13 @@ public class Cliente {
     @Id
     private UUID idCliente;
     @Indexed(unique = true)
-    @NotBlank
-    @Email
+    @NotBlank(message = "O campo email não pode estar em branco")
+    @Email(message = "Este campo deve conter um email")
     private String email;
-    @NotBlank
+    @NotBlank(message = "O campo nomeCompleto não pode estar em branco")
     private String nomeCompleto;
-    @NotNull
-    @Min(18)
+    @NotNull(message = "O campo idade não pode ser nulo")
+    @Min(value = 18, message = "A idade deve ser igual ou maior que 18")
     private int idade;
 
     public Cliente(CienteRequest clienteNovoRequest) {

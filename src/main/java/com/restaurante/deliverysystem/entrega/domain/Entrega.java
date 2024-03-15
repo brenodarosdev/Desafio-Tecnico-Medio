@@ -25,13 +25,13 @@ public class Entrega {
     private UUID idPedido;
     @NotNull
     private StatusEntrega status;
-    @NotBlank
+    @NotBlank(message = "O campo nomeDoEntregador não pode estar vazio")
     private String nomeDoEntregador;
-    @NotBlank
+    @NotBlank(message = "O campo bairro não pode estar vazio")
     private String bairro;
-    @NotBlank
+    @NotBlank(message = "O campo rua não pode estar vazio")
     private String rua;
-    @NotBlank
+    @NotBlank(message = "O campo numeroDaCasa não pode estar vazio")
     private String numeroDaCasa;
     private LocalDateTime dataHoraDaEntrega;
 

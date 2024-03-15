@@ -7,15 +7,15 @@ import org.springframework.data.mongodb.core.index.Indexed;
 @Value
 public class CienteRequest {
     @Indexed(unique = true)
-    @NotBlank
-    @Email
+    @NotBlank(message = "O campo email não pode estar em branco")
+    @Email(message = "Este campo deve conter um email")
     private String email;
-    @Size(min = 6, max = 60)
-    @NotBlank
+    @Size(min = 6, max = 60, message = "A senha deve ter de 6 a 60 caracteres")
+    @NotBlank(message = "O campo senha não pode estar em branco")
     private String senha;
-    @NotBlank
+    @NotBlank(message = "O campo nomeCompleto não pode estar em branco")
     private String nomeCompleto;
-    @NotNull
-    @Min(18)
+    @NotNull(message = "O campo idade não pode ser nulo")
+    @Min(value = 18, message = "A idade deve ser igual ou maior que 18")
     private int idade;
 }

@@ -25,11 +25,11 @@ public class Pedido {
     private UUID idPedido;
     @Indexed
     private UUID idCliente;
-    @NotEmpty
+    @NotEmpty(message = "O campo itens não pode estar vazio")
     private List<@Valid ItemCardapio> itens;
-    @NotNull
+    @NotNull(message = "O campo observacoes não pode ser nulo")
     private String observacoes;
-    @DecimalMin(value = "0.0", inclusive = false)
+    @DecimalMin(value = "0.0", inclusive = false, message = "O campo valor não pode ser menor ou igual a zero")
     private BigDecimal valor;
     @NotNull
     private LocalDateTime dataHoraDoPedido;
