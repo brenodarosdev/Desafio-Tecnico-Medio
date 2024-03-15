@@ -30,6 +30,7 @@ public class EntregaApplicationService implements EntregaService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         Entrega entrega = entregaRepository.salva(new Entrega(entregaNovoRequest, idPedido));
         log.info("[finaliza] EntregaApplicationService - criaNovaEntrega");
         return new EntregaCriadaResponse(entrega);
@@ -44,6 +45,7 @@ public class EntregaApplicationService implements EntregaService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         log.info("[finaliza] EntregaApplicationService - buscaEntregaPorId");
         return new EntregaDetalhadaResponse(entrega);
     }
@@ -57,6 +59,7 @@ public class EntregaApplicationService implements EntregaService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         entrega.alteraEntrega(entregaAlteraRequest);
         entregaRepository.salva(entrega);
         log.info("[finaliza] EntregaApplicationService - alteraEntrega");
@@ -71,6 +74,7 @@ public class EntregaApplicationService implements EntregaService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         entrega.alteraStatusParaACaminho();
         entregaRepository.salva(entrega);
         log.info("[finaliza] EntregaApplicationService - alteraStatusParaACaminho");
@@ -85,6 +89,7 @@ public class EntregaApplicationService implements EntregaService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         entrega.alteraStatusParaEntregue();
         entregaRepository.salva(entrega);
         log.info("[finaliza] EntregaApplicationService - alteraStatusParaEntregue");
@@ -99,6 +104,7 @@ public class EntregaApplicationService implements EntregaService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         entregaRepository.deletaEntregaPorId(idEntrega);
         log.info("[finaliza] EntregaApplicationService - deletaEntrega");
     }

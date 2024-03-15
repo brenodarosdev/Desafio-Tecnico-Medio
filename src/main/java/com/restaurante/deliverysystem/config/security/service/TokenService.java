@@ -61,7 +61,6 @@ public class TokenService {
     public Optional<String> getEmailByBearerToken(String bearerToken) {
         log.info("[inicia] TokenService - getEmailByBearerToken");
         String token = bearerToken.substring(7);
-        log.info(token);
         log.info("[finaliza] TokenService - getEmailByBearerToken");
         return this.getEmail(token);
     }

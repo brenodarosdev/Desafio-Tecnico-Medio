@@ -29,6 +29,7 @@ public class PedidoApplicationService implements PedidoService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         Pedido pedido = pedidoRepository.salva(new Pedido(pedidoRequest, idCliente));
         log.info("[finaliza] PedidoApplicationService - criaNovoPedido");
         return new PedidoCriadoResponse(pedido);
@@ -42,6 +43,7 @@ public class PedidoApplicationService implements PedidoService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         log.info("[finaliza] PedidoApplicationService - buscaPedidoPorId");
         return new PedidoDetalhadoResponse(pedido);
     }
@@ -52,6 +54,7 @@ public class PedidoApplicationService implements PedidoService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         List<Pedido> pedidos = pedidoRepository.pedidosPorIdCliente(idCliente);
         log.info("[finaliza] PedidoApplicationService - listaTodosPedidosPorIdCliente");
         return PedidoDetalhadoResponse.converte(pedidos);
@@ -65,6 +68,7 @@ public class PedidoApplicationService implements PedidoService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         pedido.alteraPedido(alteraPedidoRequest);
         pedidoRepository.salva(pedido);
         log.info("[finaliza] PedidoApplicationService - alteraPedido");
@@ -78,6 +82,7 @@ public class PedidoApplicationService implements PedidoService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         pedidoRepository.deletaPedidoPorId(idPedido);
         log.info("[finaliza] PedidoApplicationService - deletaPedido");
     }

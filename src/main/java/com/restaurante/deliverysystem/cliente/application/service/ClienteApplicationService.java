@@ -35,6 +35,7 @@ public class ClienteApplicationService implements ClienteService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         log.info("[finaliza] ClienteApplicationService - buscaClientePorId");
         return new ClienteDetalhadoResponse(clientePorEmail);
     }
@@ -45,6 +46,7 @@ public class ClienteApplicationService implements ClienteService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         clientePorEmail.alteraCliente(alteraClienteRequest);
         credencialService.criaNovaCredencial(alteraClienteRequest);
         clienteRepository.salva(clientePorEmail);
@@ -57,6 +59,7 @@ public class ClienteApplicationService implements ClienteService {
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
         clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         clienteRepository.deletaClientePorId(idCliente);
         log.info("[finaliza] ClienteApplicationService - deletaCliente");
     }
