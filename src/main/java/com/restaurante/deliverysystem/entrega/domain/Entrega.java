@@ -1,6 +1,7 @@
 package com.restaurante.deliverysystem.entrega.domain;
 
 import com.restaurante.deliverysystem.entrega.application.api.EntregaRequest;
+import com.restaurante.deliverysystem.handler.APIException;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -19,17 +21,17 @@ import java.util.UUID;
 public class Entrega {
     @Id
     private UUID idEntrega;
-    @Indexed
+    @Indexed(unique = true)
     private UUID idPedido;
     @NotNull
     private StatusEntrega status;
-    @NotBlank
+    @NotBlank(message = "O campo nomeDoEntregador não pode estar vazio")
     private String nomeDoEntregador;
-    @NotBlank
+    @NotBlank(message = "O campo bairro não pode estar vazio")
     private String bairro;
-    @NotBlank
+    @NotBlank(message = "O campo rua não pode estar vazio")
     private String rua;
-    @NotBlank
+    @NotBlank(message = "O campo numeroDaCasa não pode estar vazio")
     private String numeroDaCasa;
     private LocalDateTime dataHoraDaEntrega;
 
@@ -56,7 +58,7 @@ public class Entrega {
             this.status = StatusEntrega.A_CAMINHO;
         } else {
             // TODO Tratar Exception
-            throw new RuntimeException("O status já está definido para A Caminho");
+            throw APIException.build(HttpStatus.CONFLICT, "O status já está definido para A Caminho");
         }
     }
 
@@ -66,7 +68,7 @@ public class Entrega {
             this.dataHoraDaEntrega = LocalDateTime.now();
         } else {
             // TODO Tratar Exception
-            throw new RuntimeException("O status já está definido para Entregue");
+            throw APIException.build(HttpStatus.CONFLICT,"O status já está definido para Entregue");
         }
     }
 }

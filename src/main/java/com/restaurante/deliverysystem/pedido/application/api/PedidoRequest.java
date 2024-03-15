@@ -10,8 +10,8 @@ import java.util.List;
 
 @Value
 public class PedidoRequest {
-    @NotEmpty
+    @NotEmpty(message = "O campo itens não pode estar vazio")
     private List<@Valid ItemCardapio> itens;
-    @NotNull
+    @NotNull(message = "O campo observacoes não pode ser nulo")
     private String observacoes;
 }

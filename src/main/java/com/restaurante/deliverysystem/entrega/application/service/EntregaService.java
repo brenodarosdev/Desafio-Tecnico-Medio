@@ -7,10 +7,10 @@ import com.restaurante.deliverysystem.entrega.application.api.EntregaRequest;
 import java.util.UUID;
 
 public interface EntregaService {
-    EntregaCriadaResponse criaNovaEntrega(EntregaRequest entregaNovoRequest, UUID idPedido);
-    EntregaDetalhadaResponse buscaEntregaPorId(UUID idEntrega);
-    void alteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega);
-    void alteraStatusParaACaminho(UUID idEntrega);
-    void alteraStatusParaEntregue(UUID idEntrega);
-    void deletaEntrega(UUID idEntrega);
+    EntregaCriadaResponse criaNovaEntrega(EntregaRequest entregaNovoRequest, UUID idPedido, String emailCliente);
+    EntregaDetalhadaResponse buscaEntregaPorId(UUID idEntrega, String emailCliente);
+    void alteraEntrega(EntregaRequest entregaAlteraRequest, UUID idEntrega, String emailCliente);
+    void alteraStatusParaACaminho(UUID idEntrega, String emailCliente);
+    void alteraStatusParaEntregue(UUID idEntrega, String  emailCliente);
+    void deletaEntrega(UUID idEntrega, String emailCliente);
 }

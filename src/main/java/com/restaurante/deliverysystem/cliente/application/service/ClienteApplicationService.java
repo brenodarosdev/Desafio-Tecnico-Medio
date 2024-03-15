@@ -30,26 +30,36 @@ public class ClienteApplicationService implements ClienteService {
     }
 
     @Override
-    public ClienteDetalhadoResponse buscaClientePorId(UUID idCliente) {
+    public ClienteDetalhadoResponse buscaClientePorId(UUID idCliente, String emailCliente) {
         log.info("[inicia] ClienteApplicationService - buscaClientePorId");
-        Cliente cliente = clienteRepository.clientePorId(idCliente);
+        Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
+        clienteRepository.clientePorId(idCliente);
+        clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         log.info("[finaliza] ClienteApplicationService - buscaClientePorId");
-        return new ClienteDetalhadoResponse(cliente);
+        return new ClienteDetalhadoResponse(clientePorEmail);
     }
 
     @Override
-    public void alteraCliente(CienteRequest alteraClienteRequest, UUID idCliente) {
+    public void alteraCliente(CienteRequest alteraClienteRequest, UUID idCliente, String emailCliente) {
         log.info("[inicia] ClienteApplicationService - alteraCliente");
-        Cliente cliente = clienteRepository.clientePorId(idCliente);
-        cliente.alteraCliente(alteraClienteRequest);
-        clienteRepository.salva(cliente);
+        Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
+        clienteRepository.clientePorId(idCliente);
+        clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
+        clientePorEmail.alteraCliente(alteraClienteRequest);
+        credencialService.criaNovaCredencial(alteraClienteRequest);
+        clienteRepository.salva(clientePorEmail);
         log.info("[finaliza] ClienteApplicationService - alteraCliente");
     }
 
     @Override
-    public void deletaCliente(UUID idCliente) {
+    public void deletaCliente(UUID idCliente, String emailCliente) {
         log.info("[inicia] ClienteApplicationService - deletaCliente");
+        Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);
+        clientePorEmail.validaCliente(idCliente);
+        log.info("Cliente validado - O token pertence ao cliente");
         clienteRepository.deletaClientePorId(idCliente);
         log.info("[finaliza] ClienteApplicationService - deletaCliente");
     }

@@ -8,4 +8,5 @@ public interface ClienteRepository {
     Cliente salva(Cliente cliente);
     Cliente clientePorId(UUID idCliente);
     void deletaClientePorId(UUID idCliente);
+    Cliente clientePorEmail(String emailCliente);
 }

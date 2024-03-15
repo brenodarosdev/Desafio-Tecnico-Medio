@@ -2,9 +2,11 @@ package com.restaurante.deliverysystem.credencial.infra;
 
 import com.restaurante.deliverysystem.credencial.application.repository.CredencialRepository;
 import com.restaurante.deliverysystem.credencial.domain.Credencial;
+import com.restaurante.deliverysystem.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.Store;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
@@ -26,7 +28,7 @@ public class CredencialInfraRepository implements CredencialRepository {
         log.info("[inicia] CredencialInfraRepository - buscaCredencialPorEmail");
         //TODO Tratar exception, não funcionando implementação atual
         Credencial credencial = credencialSpringDataMongoDBRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Não existe credencial para o Email informado!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Não existe credencial para o Email informado!"));
         log.info("[finaliza] CredencialInfraRepository - buscaCredencialPorEmail");
         return credencial;
     }
