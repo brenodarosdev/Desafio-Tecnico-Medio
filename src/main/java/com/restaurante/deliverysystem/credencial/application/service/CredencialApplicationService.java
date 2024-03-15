@@ -1,6 +1,6 @@
 package com.restaurante.deliverysystem.credencial.application.service;
 
-import com.restaurante.deliverysystem.cliente.application.api.CienteRequest;
+import com.restaurante.deliverysystem.cliente.application.api.ClienteRequest;
 import com.restaurante.deliverysystem.credencial.application.repository.CredencialRepository;
 import com.restaurante.deliverysystem.credencial.domain.Credencial;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ public class CredencialApplicationService implements CredencialService {
     private final CredencialRepository credencialRepository;
 
     @Override
-    public void criaNovaCredencial(CienteRequest clienteNovoRequest) {
+    public void criaNovaCredencial(ClienteRequest clienteNovoRequest) {
         log.info("[inicia] CredencialApplicationService - criaNovaCredencial");
         Credencial novaCredencial = new Credencial(clienteNovoRequest.getEmail(), clienteNovoRequest.getSenha());
         credencialRepository.salva(novaCredencial);

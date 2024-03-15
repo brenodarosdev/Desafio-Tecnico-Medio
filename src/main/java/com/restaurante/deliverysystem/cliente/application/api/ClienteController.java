@@ -19,7 +19,7 @@ public class ClienteController implements ClienteAPI {
     private final TokenService tokenService;
 
     @Override
-    public ClienteCriadoResponse postCadastraNovoCliente(CienteRequest clienteNovoRequest) {
+    public ClienteCriadoResponse postCadastraNovoCliente(ClienteRequest clienteNovoRequest) {
         log.info("[inicia] ClienteController - postCadastraNovoCliente");
         ClienteCriadoResponse clienteCriadoResponse = clienteService.cadastraNovoCliente(clienteNovoRequest);
         log.info("[finaliza] ClienteController - postCadastraNovoCliente");
@@ -37,7 +37,7 @@ public class ClienteController implements ClienteAPI {
     }
 
     @Override
-    public void patchAlteraCliente(String token, CienteRequest alteraClienteRequest, UUID idCliente) {
+    public void patchAlteraCliente(String token, ClienteRequest alteraClienteRequest, UUID idCliente) {
         log.info("[inicia] ClienteController - patchAlteraCliente");
         String emailCliente = tokenService.getEmailByBearerToken(token)
                 .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
