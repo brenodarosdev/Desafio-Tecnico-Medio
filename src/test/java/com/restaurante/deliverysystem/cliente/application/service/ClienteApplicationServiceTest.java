@@ -1,6 +1,7 @@
 package com.restaurante.deliverysystem.cliente.application.service;
 
 import com.restaurante.deliverysystem.cliente.application.api.ClienteCriadoResponse;
+import com.restaurante.deliverysystem.cliente.application.api.ClienteDetalhadoResponse;
 import com.restaurante.deliverysystem.cliente.application.api.ClienteRequest;
 import com.restaurante.deliverysystem.cliente.application.repository.ClienteRepository;
 import com.restaurante.deliverysystem.credencial.application.service.CredencialService;
@@ -43,5 +44,21 @@ class ClienteApplicationServiceTest {
         assertNotNull(clienteCriadoResponse);
         assertEquals(ClienteCriadoResponse.class, clienteCriadoResponse.getClass());
         assertEquals(UUID.class, clienteCriadoResponse.getIdCliente().getClass());
+    }
+
+    @Test
+    void deveBuscarClientePorId() {
+        //Given - Dado
+        Cliente cliente = ClienteCreator.criaCliente();
+        String email = cliente.getEmail();
+        UUID idCliente = cliente.getIdCliente();
+        //When - Quando
+        when(clienteRepository.clientePorEmail(anyString())).thenReturn(cliente);
+        when(clienteRepository.clientePorId(idCliente)).thenReturn(cliente);
+        ClienteDetalhadoResponse clienteDetalhadoResponse = clienteApplicationService.buscaClientePorId(idCliente, email);
+        //Then - Então
+        verify(clienteRepository, times(1)).clientePorId(idCliente);
+        assertEquals(ClienteDetalhadoResponse.class, clienteDetalhadoResponse.getClass());
+        assertNotNull(clienteDetalhadoResponse);
     }
 }
