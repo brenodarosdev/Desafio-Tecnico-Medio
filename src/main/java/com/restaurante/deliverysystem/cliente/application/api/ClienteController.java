@@ -30,7 +30,7 @@ public class ClienteController implements ClienteAPI {
     public ClienteDetalhadoResponse getBuscaClientePorId(String token, UUID idCliente) {
         log.info("[inicia] ClienteController - getBuscaClientePorId");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         ClienteDetalhadoResponse clienteDetalhadoResponse = clienteService.buscaClientePorId(idCliente, emailCliente);
         log.info("[finaliza] ClienteController - getBuscaClientePorId");
         return clienteDetalhadoResponse;
@@ -40,7 +40,7 @@ public class ClienteController implements ClienteAPI {
     public void patchAlteraCliente(String token, ClienteRequest alteraClienteRequest, UUID idCliente) {
         log.info("[inicia] ClienteController - patchAlteraCliente");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         clienteService.alteraCliente(alteraClienteRequest, idCliente, emailCliente);
         log.info("[finaliza] ClienteController - patchAlteraCliente");
     }
@@ -49,7 +49,7 @@ public class ClienteController implements ClienteAPI {
     public void deleteDeletaCliente(String token, UUID idCliente) {
         log.info("[inicia] ClienteController - deleteDeletaCliente");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         clienteService.deletaCliente(idCliente, emailCliente);
         log.info("[finaliza] ClienteController - deleteDeletaCliente");
     }

@@ -23,7 +23,7 @@ public class PedidoController implements PedidoAPI {
     public PedidoCriadoResponse postCriaNovoPedido(String token, PedidoRequest pedidoRequest, UUID idCliente) {
         log.info("[inicia] PedidoController - postCriaNovoPedido");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         PedidoCriadoResponse pedidoCriadoResponse = pedidoService.criaNovoPedido(pedidoRequest, idCliente, emailCliente);
         log.info("[finaliza] PedidoController - postCriaNovoPedido");
         return pedidoCriadoResponse;
@@ -33,7 +33,7 @@ public class PedidoController implements PedidoAPI {
     public PedidoDetalhadoResponse getBuscaPedidoPorId(String token, UUID idPedido) {
         log.info("[inicia] PedidoController - getBuscaPedidoPorId");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         PedidoDetalhadoResponse pedidoDetalhadoResponse = pedidoService.buscaPedidoPorId(idPedido, emailCliente);
         log.info("[finaliza] PedidoController - getBuscaPedidoPorId");
         return pedidoDetalhadoResponse;
@@ -43,7 +43,7 @@ public class PedidoController implements PedidoAPI {
     public List<PedidoDetalhadoResponse> getListaTodosPedidosPorIdCliente(String token, UUID idCliente) {
         log.info("[inicia] PedidoController - getListaTodosPedidosPorIdCliente");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         List<PedidoDetalhadoResponse> pedidosDoCliente = pedidoService.listaTodosPedidosPorIdCliente(idCliente, emailCliente);
         log.info("[finaliza] PedidoController - getListaTodosPedidosPorIdCliente");
         return pedidosDoCliente;
@@ -53,7 +53,7 @@ public class PedidoController implements PedidoAPI {
     public void patchAlteraPedido(String token, PedidoRequest alteraPedidoRequest, UUID idPedido) {
         log.info("[inicia] PedidoController - patchAlteraPedido");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         pedidoService.alteraPedido(alteraPedidoRequest, idPedido, emailCliente);
         log.info("[finaliza PedidoController - patchAlteraPedido");
     }
@@ -62,7 +62,7 @@ public class PedidoController implements PedidoAPI {
     public void deleteDeletaPedido(String token, UUID idPedido) {
         log.info("[inicia] PedidoController - deleteDeletaPedido");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         pedidoService.deletaPedido(idPedido, emailCliente);
         log.info("[finaliza] PedidoController - deleteDeletaPedido");
     }

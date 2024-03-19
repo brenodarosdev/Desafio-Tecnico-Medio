@@ -21,7 +21,7 @@ public class EntregaController implements EntregaAPI {
     public EntregaCriadaResponse postCriaNovaEntrega(String token, EntregaRequest entregaNovoRequest, UUID idPedido) {
         log.info("[inicia] EntregaController - postCriaNovaEntrega");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         EntregaCriadaResponse entregaCriadaResponse = entregaService.criaNovaEntrega(entregaNovoRequest, idPedido, emailCliente);
         log.info("[finaliza] EntregaController - postCriaNovaEntrega");
         return entregaCriadaResponse;
@@ -31,7 +31,7 @@ public class EntregaController implements EntregaAPI {
     public EntregaDetalhadaResponse getBuscaEntregaPorId(String token, UUID idEntrega) {
         log.info("[inicia] EntregaController - getBuscaEntregaPorId");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         EntregaDetalhadaResponse entregaDetalhadaResponse = entregaService.buscaEntregaPorId(idEntrega, emailCliente);
         log.info("[finaliza] EntregaController - getBuscaEntregaPorId");
         return entregaDetalhadaResponse;
@@ -41,7 +41,7 @@ public class EntregaController implements EntregaAPI {
     public void patchAlteraEntrega(String token, EntregaRequest entregaAlteraRequest, UUID idEntrega) {
         log.info("[inicia] EntregaController - patchAlteraEntrega");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         entregaService.alteraEntrega(entregaAlteraRequest, idEntrega, emailCliente);
         log.info("[finaliza] EntregaController - patchAlteraEntrega");
     }
@@ -50,7 +50,7 @@ public class EntregaController implements EntregaAPI {
     public void patchAlteraStatusParaACaminho(String token, UUID idEntrega) {
         log.info("[inicia] EntregaController - patchAlteraStatusParaACaminho");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         entregaService.alteraStatusParaACaminho(idEntrega, emailCliente);
         log.info("[finaliza] EntregaController - patchAlteraStatusParaACaminho");
     }
@@ -59,7 +59,7 @@ public class EntregaController implements EntregaAPI {
     public void patchAlteraStatusParaEntregue(String token, UUID idEntrega) {
         log.info("[inicia] EntregaController - patchAlteraStatusParaEntregue");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         entregaService.alteraStatusParaEntregue(idEntrega, emailCliente);
         log.info("[finaliza] EntregaController - patchAlteraStatusParaEntregue");
     }
@@ -68,7 +68,7 @@ public class EntregaController implements EntregaAPI {
     public void deleteDeletaEntrega(String token, UUID idEntrega) {
         log.info("[inicia] EntregaController - deleteDeletaEntrega");
         String emailCliente = tokenService.getEmailByBearerToken(token)
-                .orElseThrow(() -> APIException.build(HttpStatus.FORBIDDEN, "Token inválido!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
         entregaService.deletaEntrega(idEntrega, emailCliente);
         log.info("[finaliza] EntregaController - deleteDeletaEntrega");
     }
