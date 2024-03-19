@@ -57,8 +57,27 @@ class ClienteApplicationServiceTest {
         when(clienteRepository.clientePorId(idCliente)).thenReturn(cliente);
         ClienteDetalhadoResponse clienteDetalhadoResponse = clienteApplicationService.buscaClientePorId(idCliente, email);
         //Then - Então
+        verify(clienteRepository, times(1)).clientePorEmail(email);
         verify(clienteRepository, times(1)).clientePorId(idCliente);
         assertEquals(ClienteDetalhadoResponse.class, clienteDetalhadoResponse.getClass());
         assertNotNull(clienteDetalhadoResponse);
+    }
+
+    @Test
+    void deveAlterarCliente() {
+        //Given - Dado
+        Cliente cliente = ClienteCreator.criaCliente();
+        String email = cliente.getEmail();
+        UUID idCliente = cliente.getIdCliente();
+        ClienteRequest request = ClienteCreator.criaClienteRequest();
+        //When - Quando
+        when(clienteRepository.clientePorEmail(anyString())).thenReturn(cliente);
+        when(clienteRepository.clientePorId(idCliente)).thenReturn(cliente);
+        when(clienteRepository.salva(any(Cliente.class))).thenReturn(cliente);
+        clienteApplicationService.alteraCliente(request, idCliente, email);
+        //Then - Então
+        verify(clienteRepository, times(1)).clientePorEmail(email);
+        verify(clienteRepository, times(1)).clientePorId(idCliente);
+        verify(clienteRepository, times(1)).salva(any(Cliente.class));
     }
 }
