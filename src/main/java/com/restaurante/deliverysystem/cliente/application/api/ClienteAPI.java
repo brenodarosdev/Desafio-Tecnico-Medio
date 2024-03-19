@@ -12,12 +12,12 @@ import java.util.UUID;
 @Tag(name = "Cliente")
 @RequestMapping("/public/cliente")
 public interface ClienteAPI {
-    @PostMapping
+    @PostMapping("/novoCliente")
     @ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Cria novo Cliente")
     ClienteCriadoResponse postCadastraNovoCliente(@RequestBody @Valid ClienteRequest clienteNovoRequest);
 
-    @GetMapping("/{idCliente}")
+    @GetMapping("/buscaCliente/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Busca Cliente por ID")
     ClienteDetalhadoResponse getBuscaClientePorId(@RequestHeader(name = "Authorization") String token,

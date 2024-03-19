@@ -20,7 +20,7 @@ public interface EntregaAPI {
                                               @Valid @RequestBody EntregaRequest entregaNovoRequest,
                                               @PathVariable UUID idPedido);
 
-    @GetMapping("/{idEntrega}")
+    @GetMapping("/buscaEntrega/{idEntrega}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Busca Entrega por ID")
     EntregaDetalhadaResponse getBuscaEntregaPorId(@RequestHeader(name = "Authorization") String token,
