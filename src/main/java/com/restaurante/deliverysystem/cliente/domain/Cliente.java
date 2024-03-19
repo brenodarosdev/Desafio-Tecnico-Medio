@@ -11,9 +11,7 @@ import org.springframework.http.HttpStatus;
 
 import java.util.UUID;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder
 @Getter
 @Document(collection = "Cliente")
 public class Cliente {
