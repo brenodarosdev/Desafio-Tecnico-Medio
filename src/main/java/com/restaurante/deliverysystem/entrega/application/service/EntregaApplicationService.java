@@ -2,6 +2,7 @@ package com.restaurante.deliverysystem.entrega.application.service;
 
 import com.restaurante.deliverysystem.cliente.application.repository.ClienteRepository;
 import com.restaurante.deliverysystem.cliente.domain.Cliente;
+import com.restaurante.deliverysystem.entrega.application.api.EntregaConcluidaResponse;
 import com.restaurante.deliverysystem.entrega.application.api.EntregaCriadaResponse;
 import com.restaurante.deliverysystem.entrega.application.api.EntregaDetalhadaResponse;
 import com.restaurante.deliverysystem.entrega.application.api.EntregaRequest;
@@ -81,7 +82,7 @@ public class EntregaApplicationService implements EntregaService {
     }
 
     @Override
-    public void alteraStatusParaEntregue(UUID idEntrega, String  emailCliente) {
+    public EntregaConcluidaResponse alteraStatusParaEntregue(UUID idEntrega, String  emailCliente) {
         log.info("[inicia] EntregaApplicationService - alteraStatusParaEntregue");
         Entrega entrega = entregaRepository.entregaPorId(idEntrega);
         UUID idPedido = entrega.getIdPedido();
@@ -93,6 +94,7 @@ public class EntregaApplicationService implements EntregaService {
         entrega.alteraStatusParaEntregue();
         entregaRepository.salva(entrega);
         log.info("[finaliza] EntregaApplicationService - alteraStatusParaEntregue");
+        return new EntregaConcluidaResponse(entrega);
     }
 
     @Override

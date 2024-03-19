@@ -2,12 +2,14 @@ package com.restaurante.deliverysystem.entrega.application.api;
 
 import com.restaurante.deliverysystem.config.security.service.TokenService;
 import com.restaurante.deliverysystem.entrega.application.service.EntregaService;
+import com.restaurante.deliverysystem.entrega.domain.Entrega;
 import com.restaurante.deliverysystem.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -56,12 +58,13 @@ public class EntregaController implements EntregaAPI {
     }
 
     @Override
-    public void patchAlteraStatusParaEntregue(String token, UUID idEntrega) {
+    public EntregaConcluidaResponse patchAlteraStatusParaEntregue(String token, UUID idEntrega) {
         log.info("[inicia] EntregaController - patchAlteraStatusParaEntregue");
         String emailCliente = tokenService.getEmailByBearerToken(token)
                 .orElseThrow(() -> APIException.build(HttpStatus.UNAUTHORIZED, "Token inválido!"));
-        entregaService.alteraStatusParaEntregue(idEntrega, emailCliente);
+        EntregaConcluidaResponse entregaConcluidaResponse = entregaService.alteraStatusParaEntregue(idEntrega, emailCliente);
         log.info("[finaliza] EntregaController - patchAlteraStatusParaEntregue");
+        return entregaConcluidaResponse;
     }
 
     @Override
