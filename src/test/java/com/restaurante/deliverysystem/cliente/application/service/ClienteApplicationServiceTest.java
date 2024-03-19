@@ -23,7 +23,6 @@ import static org.mockito.Mockito.*;
 class ClienteApplicationServiceTest {
     @InjectMocks
     private ClienteApplicationService clienteApplicationService;
-
     @Mock
     private CredencialService credencialService;
     @Mock
@@ -79,5 +78,21 @@ class ClienteApplicationServiceTest {
         verify(clienteRepository, times(1)).clientePorEmail(email);
         verify(clienteRepository, times(1)).clientePorId(idCliente);
         verify(clienteRepository, times(1)).salva(any(Cliente.class));
+    }
+
+    @Test
+    void deveDeletarCliente() {
+        //Given - Dado
+        Cliente cliente = ClienteCreator.criaCliente();
+        String email = cliente.getEmail();
+        UUID idCliente = cliente.getIdCliente();
+        //When - Quando
+        when(clienteRepository.clientePorEmail(anyString())).thenReturn(cliente);
+        when(clienteRepository.clientePorId(idCliente)).thenReturn(cliente);
+        clienteApplicationService.deletaCliente(idCliente, email);
+        //Then - Então
+        verify(clienteRepository, times(1)).clientePorEmail(email);
+        verify(clienteRepository, times(1)).clientePorId(idCliente);
+        verify(clienteRepository, times(1)).deletaClientePorId(idCliente);
     }
 }
