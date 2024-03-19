@@ -12,12 +12,12 @@ import java.util.UUID;
 @Tag(name = "Cliente")
 @RequestMapping("/public/cliente")
 public interface ClienteAPI {
-    @PostMapping
+    @PostMapping("/novoCliente")
     @ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Cria novo Cliente")
-    ClienteCriadoResponse postCadastraNovoCliente(@RequestBody @Valid CienteRequest clienteNovoRequest);
+    ClienteCriadoResponse postCadastraNovoCliente(@RequestBody @Valid ClienteRequest clienteNovoRequest);
 
-    @GetMapping("/{idCliente}")
+    @GetMapping("/buscaCliente/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Busca Cliente por ID")
     ClienteDetalhadoResponse getBuscaClientePorId(@RequestHeader(name = "Authorization") String token,
@@ -27,7 +27,7 @@ public interface ClienteAPI {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @Operation(summary = "Altera Cliente")
     void patchAlteraCliente(@RequestHeader(name = "Authorization") String token,
-                            @RequestBody @Valid CienteRequest alteraClienteRequest, @PathVariable UUID idCliente);
+                            @RequestBody @Valid ClienteRequest alteraClienteRequest, @PathVariable UUID idCliente);
 
     @DeleteMapping("/deletaCliente/{idCliente}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

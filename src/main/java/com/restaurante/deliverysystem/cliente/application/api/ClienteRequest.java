@@ -5,7 +5,7 @@ import lombok.Value;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 @Value
-public class CienteRequest {
+public class ClienteRequest {
     @Indexed(unique = true)
     @NotBlank(message = "O campo email não pode estar em branco")
     @Email(message = "Este campo deve conter um email")

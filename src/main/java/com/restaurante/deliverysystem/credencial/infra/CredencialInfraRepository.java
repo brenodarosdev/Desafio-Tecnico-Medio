@@ -26,7 +26,6 @@ public class CredencialInfraRepository implements CredencialRepository {
     @Override
     public Credencial buscaCredencialPorEmail(String email) {
         log.info("[inicia] CredencialInfraRepository - buscaCredencialPorEmail");
-        //TODO Tratar exception, não funcionando implementação atual
         Credencial credencial = credencialSpringDataMongoDBRepository.findByEmail(email)
                 .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Não existe credencial para o Email informado!"));
         log.info("[finaliza] CredencialInfraRepository - buscaCredencialPorEmail");

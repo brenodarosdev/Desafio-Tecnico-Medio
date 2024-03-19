@@ -1,11 +1,9 @@
 package com.restaurante.deliverysystem.cliente.domain;
 
-import com.restaurante.deliverysystem.cliente.application.api.CienteRequest;
+import com.restaurante.deliverysystem.cliente.application.api.ClienteRequest;
 import com.restaurante.deliverysystem.handler.APIException;
 import jakarta.validation.constraints.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -29,14 +27,14 @@ public class Cliente {
     @Min(value = 18, message = "A idade deve ser igual ou maior que 18")
     private int idade;
 
-    public Cliente(CienteRequest clienteNovoRequest) {
+    public Cliente(ClienteRequest clienteNovoRequest) {
         this.idCliente = UUID.randomUUID();
         this.email = clienteNovoRequest.getEmail();
         this.nomeCompleto = clienteNovoRequest.getNomeCompleto();
         this.idade = clienteNovoRequest.getIdade();
     }
 
-    public void alteraCliente(CienteRequest alteraClienteRequest) {
+    public void alteraCliente(ClienteRequest alteraClienteRequest) {
         this.email = alteraClienteRequest.getEmail();
         this.nomeCompleto = alteraClienteRequest.getNomeCompleto();
         this.idade = alteraClienteRequest.getIdade();

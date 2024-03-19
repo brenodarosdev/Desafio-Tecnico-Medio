@@ -57,7 +57,6 @@ public class Entrega {
         if (!this.status.equals(StatusEntrega.A_CAMINHO)) {
             this.status = StatusEntrega.A_CAMINHO;
         } else {
-            // TODO Tratar Exception
             throw APIException.build(HttpStatus.CONFLICT, "O status já está definido para A Caminho");
         }
     }
@@ -67,7 +66,6 @@ public class Entrega {
             this.status = StatusEntrega.ENTREGUE;
             this.dataHoraDaEntrega = LocalDateTime.now();
         } else {
-            // TODO Tratar Exception
             throw APIException.build(HttpStatus.CONFLICT,"O status já está definido para Entregue");
         }
     }

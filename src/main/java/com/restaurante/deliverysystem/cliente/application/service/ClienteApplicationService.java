@@ -1,6 +1,6 @@
 package com.restaurante.deliverysystem.cliente.application.service;
 
-import com.restaurante.deliverysystem.cliente.application.api.CienteRequest;
+import com.restaurante.deliverysystem.cliente.application.api.ClienteRequest;
 import com.restaurante.deliverysystem.cliente.application.api.ClienteCriadoResponse;
 import com.restaurante.deliverysystem.cliente.application.api.ClienteDetalhadoResponse;
 import com.restaurante.deliverysystem.cliente.application.repository.ClienteRepository;
@@ -21,7 +21,7 @@ public class ClienteApplicationService implements ClienteService {
     private final CredencialService credencialService;
 
     @Override
-    public ClienteCriadoResponse cadastraNovoCliente(CienteRequest clienteNovoRequest) {
+    public ClienteCriadoResponse cadastraNovoCliente(ClienteRequest clienteNovoRequest) {
         log.info("[inicia] ClienteApplicationService - cadastraNovoCliente");
         credencialService.criaNovaCredencial(clienteNovoRequest);
         Cliente cliente = clienteRepository.salva(new Cliente(clienteNovoRequest));
@@ -41,7 +41,7 @@ public class ClienteApplicationService implements ClienteService {
     }
 
     @Override
-    public void alteraCliente(CienteRequest alteraClienteRequest, UUID idCliente, String emailCliente) {
+    public void alteraCliente(ClienteRequest alteraClienteRequest, UUID idCliente, String emailCliente) {
         log.info("[inicia] ClienteApplicationService - alteraCliente");
         Cliente clientePorEmail = clienteRepository.clientePorEmail(emailCliente);
         clienteRepository.clientePorId(idCliente);

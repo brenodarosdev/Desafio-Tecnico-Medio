@@ -19,13 +19,13 @@ public interface PedidoAPI {
     PedidoCriadoResponse postCriaNovoPedido(@RequestHeader(name = "Authorization") String token,
                                             @Valid @RequestBody PedidoRequest pedidoRequest, @PathVariable UUID idCliente);
 
-    @GetMapping("/{idPedido}")
+    @GetMapping("/buscaPedido/{idPedido}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Busca Pedido por ID")
     PedidoDetalhadoResponse getBuscaPedidoPorId(@RequestHeader(name = "Authorization") String token,
                                                 @PathVariable UUID idPedido);
 
-    @GetMapping("/pedidos/{idCliente}")
+    @GetMapping("/listaPedidos/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Lista Pedidos por ID do Cliente")
     List<PedidoDetalhadoResponse> getListaTodosPedidosPorIdCliente(@RequestHeader(name = "Authorization") String token,

@@ -20,7 +20,7 @@ public interface EntregaAPI {
                                               @Valid @RequestBody EntregaRequest entregaNovoRequest,
                                               @PathVariable UUID idPedido);
 
-    @GetMapping("/{idEntrega}")
+    @GetMapping("/buscaEntrega/{idEntrega}")
     @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Busca Entrega por ID")
     EntregaDetalhadaResponse getBuscaEntregaPorId(@RequestHeader(name = "Authorization") String token,
@@ -38,9 +38,9 @@ public interface EntregaAPI {
     void patchAlteraStatusParaACaminho(@RequestHeader(name = "Authorization") String token, @PathVariable UUID idEntrega);
 
     @PatchMapping("/entregue/{idEntrega}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Muda status para ENTREGUE")
-    void patchAlteraStatusParaEntregue(@RequestHeader(name = "Authorization") String token, @PathVariable UUID idEntrega);
+    EntregaConcluidaResponse patchAlteraStatusParaEntregue(@RequestHeader(name = "Authorization") String token, @PathVariable UUID idEntrega);
 
     @DeleteMapping("/deletaEntrega/{idEntrega}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
